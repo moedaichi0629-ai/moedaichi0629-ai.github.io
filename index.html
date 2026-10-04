@@ -316,7 +316,7 @@ section{padding:112px 0}
 #profile{background:var(--bg-2);border-top:1px solid var(--line)}
 .profile{display:grid;grid-template-columns:360px 1fr;gap:56px;align-items:start}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;position:sticky;top:96px}
-.avatar{width:84px;height:84px;border-radius:24px;background:conic-gradient(from 200deg,var(--accent),var(--mark),var(--accent));display:grid;place-items:center;font-family:var(--font-display);font-weight:900;font-size:30px;color:#15171C}
+.avatar{width:148px;height:148px;border-radius:32px;background:#fff;border:1px solid var(--line);overflow:hidden;object-fit:cover}
 .card h3{font-size:26px;font-weight:900;margin-top:20px}
 .card .role{font-family:var(--font-mono);font-size:12px;color:var(--ink-3)}
 .card p{font-size:14.5px;color:var(--ink-2);margin-top:16px}
@@ -776,7 +776,7 @@ footer a:hover{color:var(--ink)}
 <section id="profile">
   <div class="wrap profile">
     <aside class="card rv">
-      <div class="avatar" aria-hidden="true">も</div>
+      <img class="avatar" src="images/moe.webp" alt="もえのイラスト（ノートパソコンの前でコーヒーを持つ女性）" width="148" height="148" loading="lazy">
       <h3>もえ</h3>
       <span class="role">AI Developer / 業務自動化</span>
       <p>AIやAPI連携を活用し、日常や業務の「面倒」を解決するツールを開発しています。業務効率化やWebアプリ開発を中心に、企画・設計・開発・公開まで一貫して対応。「使いやすく、長く使えるサービス」を大切に、日々学習と開発を続けています。</p>
