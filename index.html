@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Moe — AI Developer Portfolio</title>
-<meta name="description" content="AI・API連携で日常や業務の「面倒」を解決するツールを制作する、もえのポートフォリオ。LINE・Googleツール・生成AIをつなぐ業務自動化とWebアプリ開発。">
+<meta name="description" content="Googleツール・LINE・AIで、毎日の手作業を減らす仕組みをつくります。GASによるスプレッドシート自動化、Googleサービス連携、メール通知の自動化に対応。">
 <meta property="og:title" content="Moe — AI Developer Portfolio">
 <meta property="og:description" content="日常や業務の「面倒」を、AIでシンプルに。">
 <meta property="og:type" content="website">
@@ -19,14 +19,14 @@
 <link rel="canonical" href="https://moedaichi0629-ai.github.io/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#FFFFFF;
   --bg-2:#F6F8FB;
   --surface:#FFFFFF;
   --ink:#14181F;
-  --ink-2:#5B6472;
+  --ink-2:#4F5868;
   --ink-3:#687284;
   --line:#E6E9EF;
   --accent:#2E6BE6;
@@ -37,23 +37,22 @@
   --deep-ink:#E8EEF9;
   --deep-accent:#8FB4FF;
   --green:#06C755;
-  --radius:18px;
+  --radius:20px;
   --shadow:0 1px 0 rgba(20,24,31,.03),0 12px 32px -12px rgba(30,60,130,.18);
-  --font-display:"Zen Kaku Gothic New",system-ui,sans-serif;
+  --font-display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic UI",system-ui,sans-serif;
   --font-body:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo",system-ui,sans-serif;
-  --font-mono:"JetBrains Mono",ui-monospace,monospace;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#0B1120;--bg-2:#111A2E;--surface:#152036;--ink:#E8EEF9;--ink-2:#A6B1C6;--ink-3:#8593AB;
+    --bg:#0B1120;--bg-2:#111A2E;--surface:#152036;--ink:#E8EEF9;--ink-2:#B4BED0;--ink-3:#8F9BB2;
     --line:#22304A;--accent:#6E9BFF;--accent-ink:#0B1120;--accent-soft:#16264A;--mark:#25427E;
     --deep:#152036;--deep-ink:#E8EEF9;--deep-accent:#8FB4FF;
     --shadow:0 1px 0 rgba(0,0,0,.2),0 16px 40px -16px rgba(0,0,0,.6);color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0B1120;--bg-2:#111A2E;--surface:#152036;--ink:#E8EEF9;--ink-2:#A6B1C6;--ink-3:#8593AB;
+  --bg:#0B1120;--bg-2:#111A2E;--surface:#152036;--ink:#E8EEF9;--ink-2:#B4BED0;--ink-3:#8F9BB2;
   --line:#22304A;--accent:#6E9BFF;--accent-ink:#0B1120;--accent-soft:#16264A;--mark:#25427E;
   --deep:#152036;--deep-ink:#E8EEF9;--deep-accent:#8FB4FF;
   --shadow:0 1px 0 rgba(0,0,0,.2),0 16px 40px -16px rgba(0,0,0,.6);color-scheme:dark;
@@ -61,44 +60,41 @@
 
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.85;letter-spacing:.02em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.9;letter-spacing:.03em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit}
-h1,h2,h3{font-family:var(--font-display);line-height:1.3;margin:0;letter-spacing:.01em}
+h1,h2,h3{font-family:var(--font-display);line-height:1.35;margin:0;letter-spacing:.02em}
 p{margin:0}
-.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
-.mono{font-family:var(--font-mono);letter-spacing:0}
-.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.wrap{width:min(1080px,100% - 32px);margin-inline:auto}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+@media (max-width:760px){body{font-size:16px}}
 
 /* ---------- header ---------- */
-.header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid transparent;transition:border-color .3s}
+.header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid transparent;transition:border-color .3s}
 .header.scrolled{border-bottom-color:var(--line)}
-.header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--font-display);font-weight:900;font-size:20px}
-.logo-mark{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:#fff;object-fit:cover}
-.nav{display:flex;align-items:center;gap:4px}
-.nav a{text-decoration:none;font-size:14px;font-weight:500;color:var(--ink-2);padding:8px 12px;border-radius:999px;transition:background .2s,color .2s}
-.nav a:hover{background:var(--bg-2);color:var(--ink)}
-.nav .nav-cta{background:var(--ink);color:var(--bg);margin-left:8px}
-.nav .nav-cta:hover{background:var(--accent);color:var(--accent-ink)}
-.theme-btn{width:38px;height:38px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;display:grid;place-items:center;margin-left:6px}
-.theme-btn svg{width:18px;height:18px}
-.menu-btn{display:none}
+.header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--font-display);font-weight:900;font-size:21px}
+.logo img{width:42px;height:42px;border-radius:11px;border:1px solid var(--line);background:#fff;object-fit:cover}
 .head-right{display:flex;align-items:center;gap:8px}
+.nav{display:flex;align-items:center;gap:4px}
+.nav a{text-decoration:none;font-size:15px;font-weight:700;color:var(--ink-2);padding:8px 14px;border-radius:999px;transition:background .2s,color .2s}
+.nav a:hover{background:var(--bg-2);color:var(--ink)}
+.nav .nav-cta{background:var(--accent);color:var(--accent-ink);margin-left:6px}
+.nav .nav-cta:hover{background:var(--ink);color:var(--bg)}
+.icon-btn{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;display:grid;place-items:center}
+.icon-btn svg{width:20px;height:20px}
+.menu-btn{display:none}
 @media (max-width:860px){
-  .nav{position:fixed;inset:68px 0 auto 0;flex-direction:column;align-items:stretch;padding:12px 16px 20px;background:var(--bg);border-bottom:1px solid var(--line);transform:translateY(-8px);opacity:0;pointer-events:none;transition:.25s}
+  .nav{position:fixed;inset:72px 0 auto 0;flex-direction:column;align-items:stretch;padding:12px 16px 20px;background:var(--bg);border-bottom:1px solid var(--line);transform:translateY(-8px);opacity:0;pointer-events:none;transition:.25s}
   .nav.open{transform:none;opacity:1;pointer-events:auto}
-  .nav a{padding:12px 14px;font-size:16px}
+  .nav a{padding:14px;font-size:17px}
   .nav .nav-cta{margin:8px 0 0;text-align:center}
-  .menu-btn{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
-  .head-right{display:flex;align-items:center;gap:8px}
-  .theme-btn{margin:0}
+  .menu-btn{display:grid}
 }
 
 /* ---------- buttons ---------- */
-.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;transition:transform .2s,background .2s,color .2s,border-color .2s;border:1.5px solid transparent;white-space:nowrap}
-.btn svg{width:16px;height:16px;transition:transform .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;transition:transform .2s,background .2s,color .2s,border-color .2s;border:1.5px solid transparent;white-space:nowrap}
+.btn svg{width:17px;height:17px;transition:transform .2s}
 .btn:hover svg{transform:translateX(3px)}
 .btn-primary{background:var(--accent);color:var(--accent-ink)}
 .btn-primary:hover{transform:translateY(-2px)}
@@ -106,335 +102,188 @@ p{margin:0}
 .btn-ghost:hover{border-color:var(--ink)}
 
 /* ---------- section ---------- */
-section{padding:112px 0}
-.sec-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px;margin-bottom:56px}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
-.eyebrow::before{content:"";width:18px;height:1.5px;background:currentColor}
-.sec-title{font-size:clamp(28px,4.2vw,44px);font-weight:900}
-.sec-lead{color:var(--ink-2);max-width:460px;font-size:15px}
-@media (max-width:760px){section{padding:80px 0}.sec-head{grid-template-columns:1fr;margin-bottom:36px}}
+section{padding:104px 0}
+.sec-head{text-align:center;margin-bottom:52px}
+.eyebrow{display:inline-block;font-size:14px;font-weight:700;letter-spacing:.12em;color:var(--accent);margin-bottom:10px}
+.sec-title{font-size:clamp(28px,4.4vw,42px);font-weight:900}
+.sec-lead{color:var(--ink-2);margin-top:14px}
+.alt{background:var(--bg-2)}
+.nw{display:inline-block}
+@media (max-width:760px){section{padding:72px 0}.sec-head{margin-bottom:36px}}
 
 /* ---------- hero ---------- */
-.hero{padding:72px 0 96px;position:relative;background:linear-gradient(180deg,var(--accent-soft) 0%,var(--bg) 85%)}
-.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 60% at 70% 40%,#000 10%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 70% 40%,#000 10%,transparent 70%);opacity:.55;pointer-events:none}
-.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative}
-.status{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:13px;color:var(--ink-2);margin-bottom:28px}
-.status .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 22%,transparent);animation:pulse 2.4s infinite}
-@keyframes pulse{50%{box-shadow:0 0 0 7px color-mix(in srgb,var(--green) 0%,transparent)}}
-.hero h1{font-size:clamp(38px,6.2vw,72px);font-weight:900;line-height:1.18;letter-spacing:-.01em}
-.hero h1 .hl{background:linear-gradient(transparent 62%,var(--mark) 62%,var(--mark) 92%,transparent 92%);padding:0 .06em}
+.hero{padding:64px 0 88px;background:linear-gradient(180deg,var(--accent-soft) 0%,var(--bg) 90%)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.status{display:inline-flex;align-items:center;gap:10px;padding:7px 16px 7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:14px;font-weight:700;color:var(--ink-2);margin-bottom:24px}
+.status .dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 22%,transparent)}
+.hero h1{font-size:clamp(38px,6vw,66px);font-weight:900;line-height:1.25}
+.hero h1 .hl{background:linear-gradient(transparent 62%,var(--mark) 62%,var(--mark) 92%,transparent 92%)}
 .hero h1 .ai{color:var(--accent)}
-.hero-lead{margin-top:28px;font-size:17px;color:var(--ink-2);max-width:520px}
-.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
-.hero-meta{display:flex;gap:36px;margin-top:48px;padding-top:28px;border-top:1px solid var(--line)}
-.hero-meta a{display:flex;flex-direction:column;text-decoration:none;transition:color .2s}
-.hero-meta a:hover,.hero-meta a:hover span{color:var(--accent)}
-.hero-meta strong{font-family:var(--font-display);font-size:32px;font-weight:900;line-height:1}
-.hero-meta span{font-size:12px;color:var(--ink-3);margin-top:8px}
-.hero-meta strong small{font-size:.5em;margin-left:2px;font-weight:700}
+.hero-lead{margin-top:24px;font-size:19px;color:var(--ink-2);max-width:30em}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero-meta{display:flex;gap:32px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}
+.hero-meta div{display:flex;flex-direction:column}
+.hero-meta strong{font-family:var(--font-display);font-size:30px;font-weight:900;line-height:1}
+.hero-meta strong small{font-size:.55em;margin-left:2px}
+.hero-meta span{font-size:14px;color:var(--ink-3);margin-top:8px}
+.hero-art{position:relative;justify-self:center;width:min(100%,440px)}
+.hero-art img{width:100%;height:auto;border-radius:36px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.bubble{position:absolute;padding:10px 16px;border-radius:16px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);font-size:15px;font-weight:700;white-space:nowrap}
+.bubble::before{content:"✓ ";color:var(--green)}
+.bubble.b1{left:-28px;top:18%}
+.bubble.b2{right:-20px;top:46%}
+.bubble.b3{left:-12px;bottom:12%}
+@media (max-width:900px){
+  .hero{padding:40px 0 64px}
+  .hero .wrap{grid-template-columns:1fr;gap:40px}
+  .hero-art{width:min(100%,340px)}
+  .bubble{font-size:13.5px;padding:8px 12px}
+  .bubble.b1{left:-8px}.bubble.b2{right:-8px}.bubble.b3{left:-4px}
+}
+@media (max-width:480px){.hero-lead{font-size:17px}.hero-meta{gap:18px}.hero-meta strong{font-size:24px}.hero-meta span{font-size:13px}.hero-ctas .btn{flex:1}}
 
-/* pipeline visual */
-.pipe{background:var(--surface);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:22px;position:relative}
-.pipe-bar{display:flex;align-items:center;gap:6px;margin-bottom:18px}
-.pipe-bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
-.pipe-bar span{margin-left:10px;font-family:var(--font-mono);font-size:12px;color:var(--ink-3)}
-.node{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--bg);position:relative}
-.node .ico{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;flex:none;font-family:var(--font-mono);font-weight:600;font-size:12px;color:#fff}
-.node b{font-size:14px;display:block;line-height:1.4}
-.node small{font-size:12px;color:var(--ink-3);display:block;line-height:1.5}
-.node .tag{margin-left:auto;font-family:var(--font-mono);font-size:11px;padding:3px 8px;border-radius:6px;background:var(--bg-2);color:var(--ink-2);white-space:nowrap}
-.conn{height:30px;margin-left:35px;border-left:2px dashed var(--line);position:relative}
-.conn::after{content:"";position:absolute;left:-5px;top:0;width:8px;height:8px;border-radius:50%;background:var(--accent);animation:flow 2.4s linear infinite}
-@keyframes flow{from{top:-4px;opacity:0}20%{opacity:1}80%{opacity:1}to{top:26px;opacity:0}}
-.node.active{border-color:var(--accent);background:var(--accent-soft)}
-.pipe-out{margin-top:18px;padding:14px 16px;border-radius:14px;background:var(--deep);color:var(--deep-ink);font-family:var(--font-mono);font-size:12.5px;line-height:1.7}
-.pipe-out .ok{color:var(--deep-accent)}
-.pipe-out .typing::after{content:"▍";animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-@media (max-width:960px){.hero .wrap{grid-template-columns:1fr}.hero{padding-top:40px}}
-@media (max-width:480px){.hero-meta{gap:20px}.hero-meta strong{font-size:26px}.node .tag{display:none}}
-
-/* ---------- marquee ---------- */
-.marquee{border-block:1px solid var(--line);overflow:hidden;padding:18px 0;background:var(--bg-2)}
-.marquee-track{display:flex;gap:48px;width:max-content;animation:scroll 40s linear infinite}
-.marquee span{font-family:var(--font-mono);font-size:14px;color:var(--ink-2);display:flex;align-items:center;gap:48px;white-space:nowrap}
-.marquee span::after{content:"✦";color:var(--accent)}
-@keyframes scroll{to{transform:translateX(-50%)}}
-
-/* ---------- problems ---------- */
-.problems{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-.prob{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px;display:flex;flex-direction:column;gap:14px}
-.prob .q{font-family:var(--font-mono);font-size:11px;color:var(--ink-3)}
-.prob p{font-weight:700;font-size:15px;line-height:1.6}
-.prob .a{margin-top:auto;font-size:12.5px;color:var(--accent);font-weight:700;display:flex;gap:6px;align-items:baseline}
-.answer{margin-top:28px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:var(--font-display);font-weight:900;font-size:clamp(20px,3vw,28px);text-align:center}
-.answer::before,.answer::after{content:"";height:1px;flex:1;max-width:120px;background:var(--line)}
-@media (max-width:960px){.problems{grid-template-columns:repeat(2,1fr)}.prob:last-child{grid-column:span 2}}
-@media (max-width:480px){.problems{grid-template-columns:1fr}.prob:last-child{grid-column:auto}}
+/* ---------- problems + strengths ---------- */
+.probs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.prob{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px}
+.prob .q{display:inline-block;font-size:13px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:2px 10px;border-radius:999px;margin-bottom:12px}
+.prob p{font-weight:700;font-size:18px;line-height:1.65}
+.answer{text-align:center;font-family:var(--font-display);font-weight:900;font-size:clamp(22px,3.2vw,30px);margin:56px 0 28px}
+.answer em{font-style:normal;color:var(--accent)}
+.strs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.str{display:flex;gap:16px;align-items:flex-start;padding:24px;border-radius:var(--radius);background:var(--deep);color:var(--deep-ink)}
+.str .ico{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--deep-accent) 18%,transparent);color:var(--deep-accent);font-size:20px}
+.str b{display:block;font-size:18px;margin-bottom:2px}
+.str span{font-size:15px;color:color-mix(in srgb,var(--deep-ink) 78%,transparent);line-height:1.7}
+@media (max-width:860px){.probs,.strs{grid-template-columns:1fr}.answer{margin:40px 0 20px}}
 
 /* ---------- works ---------- */
-#works{background:var(--bg-2);border-block:1px solid var(--line)}
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px}
-.filter{border:1px solid var(--line);background:transparent;color:var(--ink-2);font:500 14px var(--font-body);padding:8px 16px;border-radius:999px;cursor:pointer;transition:.2s}
-.filter:hover{border-color:var(--ink);color:var(--ink)}
-.filter[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.filter .n{font-family:var(--font-mono);font-size:11px;opacity:.6;margin-left:6px}
-.works{display:flex;flex-direction:column;gap:28px}
-.work{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--surface);transition:transform .35s,box-shadow .35s}
-.work:hover{box-shadow:var(--shadow)}
-.work.hidden{display:none}
-.work:nth-child(even) .work-visual{order:2}
-.work-visual{background:linear-gradient(135deg,var(--accent-soft),var(--surface));padding:36px;display:grid;place-items:center;position:relative;min-height:380px;overflow:hidden}
-.work-visual .num{position:absolute;top:20px;left:24px;font-family:var(--font-mono);font-size:12px;color:var(--ink-3)}
-.work-body{padding:40px 44px;display:flex;flex-direction:column}
-.work-cat{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-.work-cat span{font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:6px;background:var(--accent-soft);color:var(--accent)}
-.work h3{font-size:26px;font-weight:900}
-.work .catch{color:var(--ink-2);font-size:15px;margin-top:8px}
-.psr{margin:24px 0;display:grid;gap:0;border-top:1px solid var(--line)}
-.psr div{display:grid;grid-template-columns:56px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.75}
-.psr dt{font-size:12px;font-weight:700;color:var(--ink-3);padding-top:2px}
-.psr dd{margin:0;color:var(--ink)}
-.stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:26px}
-.stack span{font-family:var(--font-mono);font-size:11.5px;padding:4px 10px;border:1px solid var(--line);border-radius:6px;color:var(--ink-2);background:var(--surface)}
-.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto}
-.links a,.links .soon{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;padding:10px 16px;border-radius:999px;text-decoration:none;transition:.2s}
-.links a svg{width:15px;height:15px}
+.works{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.work{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--surface);transition:box-shadow .3s,transform .3s}
+.work:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.work-visual{background:linear-gradient(135deg,var(--accent-soft),var(--surface));padding:28px 28px 0;display:flex;align-items:flex-end;justify-content:center;height:260px;overflow:hidden;position:relative}
+.shot{width:100%;border-radius:12px 12px 0 0;border:1px solid var(--line);border-bottom:0;overflow:hidden;background:#fff;box-shadow:var(--shadow)}
+.shot img{width:100%;height:232px;object-fit:cover;object-position:top left}
+.img-note{position:absolute;top:12px;right:16px;font-size:13px;color:var(--ink-3)}
+.work-body{padding:26px 28px 28px;display:flex;flex-direction:column;gap:12px;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:13px;font-weight:700;padding:3px 12px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.work h3{font-size:23px;font-weight:900}
+.work .desc{color:var(--ink-2)}
+.point{display:flex;gap:10px;padding:14px 16px;border-radius:14px;background:var(--bg-2);font-size:15px;line-height:1.75}
+.point b{flex:none;color:var(--accent)}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:6px}
+.links a,.links .soon{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;padding:10px 18px;border-radius:999px;text-decoration:none;transition:.2s}
+.links svg{width:16px;height:16px}
 .links .demo{background:var(--ink);color:var(--bg)}
 .links .demo:hover{background:var(--accent);color:var(--accent-ink)}
-.links .gh{border:1px solid var(--line);background:var(--surface)}
+.links .gh{border:1px solid var(--line)}
 .links .gh:hover{border-color:var(--ink)}
 .links .soon{border:1px dashed var(--line);color:var(--ink-3);font-weight:500}
-@media (max-width:900px){
-  .work{grid-template-columns:1fr}
-  .work:nth-child(even) .work-visual{order:0}
-  .work-visual{min-height:0;padding:44px 16px 20px}
-  .work-visual .shot img{height:200px}
-  .work-visual .float{display:none}
-  .work-visual .mock,.work-visual .phone{max-height:260px;overflow:hidden}
-  .work-body .catch{margin-top:4px}
-  .work-body{padding:28px 22px}
-  .psr div{grid-template-columns:1fr;gap:2px}
-}
-.note{margin-top:28px;font-size:13px;color:var(--ink-3);text-align:center}
-
-/* ---------- mock UI (CSS-drawn previews) ---------- */
-.mock{width:100%;max-width:420px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;font-size:12px;line-height:1.5;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.work:hover .mock{transform:translateY(-6px) rotate(-.4deg)}
-.mock-bar{display:flex;align-items:center;gap:5px;padding:9px 12px;border-bottom:1px solid var(--line);background:var(--bg)}
-.mock-bar i{width:8px;height:8px;border-radius:50%;background:var(--line)}
-.mock-bar .url{margin-left:8px;flex:1;height:18px;border-radius:5px;background:var(--bg-2);font-family:var(--font-mono);font-size:10px;color:var(--ink-3);padding:0 8px;display:flex;align-items:center}
-.mock-in{padding:16px}
-.m-row{display:flex;align-items:center;gap:8px}
-.m-input{flex:1;border:1px solid var(--line);border-radius:8px;padding:7px 10px;color:var(--ink-3);display:flex;gap:6px;align-items:center}
-.m-btn{background:var(--accent);color:var(--accent-ink);border-radius:8px;padding:7px 12px;font-weight:700;white-space:nowrap}
-.m-sk{height:7px;border-radius:4px;background:var(--bg-2);margin-top:6px}
-.m-card{border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:12px}
-.m-hero{border-radius:8px;padding:16px;background:linear-gradient(135deg,#2c2a24,#5b4a33);color:#fff}
-.m-hero b{font-size:15px;font-family:var(--font-display);display:block}
-.m-chip{display:inline-block;font-size:10px;padding:2px 8px;border-radius:999px;background:var(--bg-2);color:var(--ink-2);margin-right:4px}
-.m-chip.on{background:var(--accent);color:var(--accent-ink)}
-.todo{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
-.todo:last-child{border:0}
-.cb{width:14px;height:14px;border-radius:4px;border:1.5px solid var(--ink-3);flex:none}
-.cb.done{background:var(--accent);border-color:var(--accent);position:relative}
-.cb.done::after{content:"";position:absolute;left:3.5px;top:1px;width:4px;height:7px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
-.todo .t{flex:1}
-.todo .t.d{text-decoration:line-through;color:var(--ink-3)}
-.pri{font-size:10px;font-weight:700;padding:1px 7px;border-radius:4px}
-.pri.h{background:#FFE1DC;color:#C4321B}.pri.m{background:#FFF1CC;color:#946200}.pri.l{background:#DDF3E4;color:#1D7A3E}
-.due{font-family:var(--font-mono);font-size:10px;color:var(--ink-3)}
-.panes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.pane{border:1px solid var(--line);border-radius:10px;padding:10px}
-.pane small{font-family:var(--font-mono);font-size:9.5px;color:var(--ink-3);display:block;margin-bottom:6px}
-.pane.after{border-color:var(--accent);background:var(--accent-soft)}
-.strike{text-decoration:line-through;color:var(--ink-3)}
-.chat{display:flex;flex-direction:column;gap:8px}
-.bub{max-width:82%;padding:8px 12px;border-radius:14px;font-size:11.5px}
-.bub.me{align-self:flex-end;background:var(--accent);color:var(--accent-ink);border-bottom-right-radius:4px}
-.bub.ai{align-self:flex-start;background:var(--bg-2);border-bottom-left-radius:4px}
-.bub.ai b{display:block;font-size:10px;color:var(--ink-3);font-family:var(--font-mono);margin-bottom:2px}
-.cal{display:grid;grid-template-columns:28px repeat(5,1fr);gap:3px;font-size:9.5px}
-.cal .h{font-family:var(--font-mono);color:var(--ink-3);text-align:center;padding-bottom:2px}
-.cal .tm{font-family:var(--font-mono);color:var(--ink-3);font-size:9px}
-.cal .c{height:18px;border-radius:4px;background:var(--bg-2)}
-.cal .c.busy{background:repeating-linear-gradient(45deg,var(--line),var(--line) 3px,var(--bg-2) 3px,var(--bg-2) 6px)}
-.cal .c.free{background:var(--accent);opacity:.9}
-.msg{margin-top:12px;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:11px;background:var(--bg)}
-.msg small{font-family:var(--font-mono);font-size:9.5px;color:var(--ink-3)}
-.phone{width:230px;border-radius:30px;border:6px solid var(--ink);background:#8CABD9;overflow:hidden;box-shadow:var(--shadow);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.work:hover .phone{transform:translateY(-6px) rotate(1deg)}
-.phone-top{background:#1F2A44;color:#fff;font-size:11px;font-weight:700;padding:10px 14px;display:flex;align-items:center;gap:8px}
-.phone-top i{width:20px;height:20px;border-radius:50%;background:var(--green);display:grid;place-items:center;font-style:normal;font-size:9px}
-.phone-body{padding:12px 10px 16px;display:flex;flex-direction:column;gap:8px;min-height:250px}
-.lb{max-width:84%;padding:7px 10px;border-radius:14px;font-size:10.5px;line-height:1.5;color:#15171C}
-.lb.me{align-self:flex-end;background:#9BE66B}
-.lb.bot{align-self:flex-start;background:#fff}
-.lb.photo{width:110px;height:76px;padding:0;background:linear-gradient(135deg,#f6c26b,#e07a3f 55%,#8e4a2a);position:relative}
-.lb.photo::after{content:"🍛";position:absolute;inset:0;display:grid;place-items:center;font-size:28px}
-.sheet{margin-top:2px;background:#fff;border-radius:8px;font-family:var(--font-mono);font-size:9px;color:#15171C;overflow:hidden}
-.sheet div{display:grid;grid-template-columns:1fr 1.4fr .8fr;border-top:1px solid #e3e3e3}
-.sheet div:first-child{border:0;background:#E8F5EC;font-weight:600}
-.sheet span{padding:3px 6px}
-.gs{border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:10.5px}
-.gs div{display:grid;grid-template-columns:1.1fr .9fr 1.1fr .7fr;border-top:1px solid var(--line)}
-.gs.gs3 div{grid-template-columns:1fr 1.8fr .7fr}
-.gs div:first-child{border-top:0}
-.gs span{padding:6px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:1px solid var(--line)}
-.gs span:first-child{border-left:0}
-.gs .gs-h{background:#E8F5EC;color:#1D6B3A;font-weight:700}
-.gs .ok{color:#1D7A3E;font-weight:700}.gs .ng{color:#C4321B;font-weight:700}.gs .run{color:var(--accent);font-weight:700}
+@media (max-width:860px){.works{grid-template-columns:1fr}.work-visual{height:220px;padding:22px 20px 0}.shot img{height:198px}.work-body{padding:22px 20px 24px}}
+.mid-cta{margin-top:32px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:28px 32px;border-radius:24px;background:var(--surface);border:1px solid var(--line)}
+.mid-cta b{display:block;font-family:var(--font-display);font-size:22px;font-weight:900;margin-bottom:4px}
+.mid-cta span{color:var(--ink-2)}
+.note{margin-top:20px;font-size:14px;color:var(--ink-3);text-align:center}
 .note a{color:var(--accent)}
-.shot{display:block;width:100%;max-width:440px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.work:hover .shot{transform:translateY(-6px)}
-.shot img{width:100%;height:300px;object-fit:cover;object-position:top left;background:#fff}
-.img-note{position:absolute;top:20px;right:24px;font-size:11px;color:var(--ink-3)}
-.psr div.pt dt{color:var(--accent)}
-.float{position:absolute;font-family:var(--font-mono);font-size:11px;padding:6px 10px;border-radius:8px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);color:var(--ink-2);white-space:nowrap}
-.float b{color:var(--accent)}
-@media (max-width:480px){.float{display:none}}
+@media (max-width:760px){.mid-cta{flex-direction:column;align-items:stretch;padding:24px 22px}}
 
-/* ---------- capabilities ---------- */
-.caps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.cap{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;transition:.3s}
-.cap:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.cap .flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:18px}
-.cap .flow span{font-family:var(--font-mono);font-size:10.5px;padding:3px 8px;border-radius:5px;background:var(--bg-2);color:var(--ink-2)}
-.cap .flow em{font-style:normal;color:var(--ink-3);font-size:11px}
-.cap h3{font-size:18px;font-weight:700;margin-bottom:10px}
-.cap p{font-size:14px;color:var(--ink-2);line-height:1.8}
-@media (max-width:960px){.caps{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:560px){.caps{grid-template-columns:1fr}}
-
-/* ---------- strengths ---------- */
-#strengths{background:var(--deep);color:var(--deep-ink)}
-#strengths .eyebrow{color:var(--deep-accent)}
-#strengths .sec-lead{color:color-mix(in srgb,var(--deep-ink) 70%,transparent)}
-.strengths{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid color-mix(in srgb,var(--deep-ink) 18%,transparent)}
-.str{padding:36px 32px 8px 0}
-.str + .str{padding-left:32px;border-left:1px solid color-mix(in srgb,var(--deep-ink) 18%,transparent)}
-.str .n{font-family:var(--font-mono);font-size:13px;color:var(--deep-accent)}
-.str h3{font-size:22px;font-weight:900;margin:14px 0 12px}
-.str p{font-size:14.5px;color:color-mix(in srgb,var(--deep-ink) 72%,transparent)}
-@media (max-width:860px){.strengths{grid-template-columns:1fr}.str,.str + .str{padding:28px 0;border-left:0;border-bottom:1px solid color-mix(in srgb,var(--deep-ink) 18%,transparent)}}
+/* mock (booking, no screenshot yet) */
+.gs{width:100%;border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;overflow:hidden;font-size:13px;background:#fff;color:#14181F;box-shadow:var(--shadow)}
+.gs .bar{padding:9px 12px;background:#F6F8FB;border-bottom:1px solid #E6E9EF;font-size:13px;color:#687284}
+.gs .row{display:grid;grid-template-columns:1fr 1.1fr .8fr;border-top:1px solid #E6E9EF}
+.gs .row span{padding:9px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gs .h{background:#E8F5EC;color:#1D6B3A;font-weight:700;border-top:0}
+.gs .ok{color:#1D7A3E;font-weight:700}.gs .run{color:#2E6BE6;font-weight:700}
 
 /* ---------- services ---------- */
-.services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.svc{border:1px solid var(--line);border-radius:22px;padding:30px 28px;background:var(--surface);display:flex;flex-direction:column;gap:14px}
-.svc .n{font-family:var(--font-mono);font-size:12px;color:var(--accent);font-weight:600}
-.svc h3{font-size:20px;font-weight:900}
-.svc p{font-size:14px;color:var(--ink-2)}
-.svc ul{list-style:none;margin:6px 0 0;padding:14px 0 0;border-top:1px dashed var(--line);display:grid;gap:6px}
-.svc li{font-size:13.5px;display:flex;gap:8px;align-items:baseline}
-.svc-foot{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
-.price{display:flex;align-items:baseline;gap:6px}
-.price strong{font-family:var(--font-display);font-size:28px;font-weight:900;line-height:1}
-.price span{font-size:12.5px;color:var(--ink-3)}
-.svc-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 16px;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:700;font-size:14px;text-decoration:none;transition:background .2s,color .2s}
-.svc-link svg{width:15px;height:15px}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc{border:1px solid var(--line);border-radius:24px;padding:30px 28px;background:var(--surface);display:flex;flex-direction:column;gap:12px}
+.svc .ico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent-soft);font-size:24px}
+.svc h3{font-size:21px;font-weight:900}
+.svc p{color:var(--ink-2);font-size:16px}
+.price{margin-top:auto;padding-top:16px;border-top:1px solid var(--line);display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.price strong{font-family:var(--font-display);font-size:32px;font-weight:900;line-height:1}
+.price span{font-size:14px;color:var(--ink-3)}
+.svc-link{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 16px;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:700;font-size:15px;text-decoration:none;transition:background .2s,color .2s}
+.svc-link svg{width:16px;height:16px}
 .svc-link:hover{background:var(--accent);color:var(--accent-ink)}
-.svc-more{margin-top:16px;border:1px dashed var(--line);border-radius:22px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--bg-2)}
-.svc-more b{display:block;font-size:16px;margin-bottom:4px}
-.svc-more span{font-size:14px;color:var(--ink-2)}
-@media (max-width:760px){.svc-more{flex-direction:column;align-items:flex-start}}
-.svc li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);flex:none;transform:translateY(-2px)}
+.svc-more{margin-top:20px;border:1px dashed var(--line);border-radius:20px;padding:22px 26px;background:var(--surface);font-size:16px;color:var(--ink-2);text-align:center}
+.svc-more b{color:var(--ink)}
+.flow{margin-top:56px;text-align:center}
+.flow h3{font-size:22px;font-weight:900;margin-bottom:20px}
+.steps{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px}
+.steps li span{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.steps li span::before{counter-increment:s;content:counter(s);width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink);font-size:13px}
+.steps li + li::before{content:"→";color:var(--ink-3)}
+.flow p{margin-top:16px;color:var(--ink-2);font-size:15px}
 @media (max-width:960px){.services{grid-template-columns:1fr}}
+@media (max-width:760px){.steps{flex-direction:column;align-items:center}.steps li + li::before{content:"↓"}.steps li{flex-direction:column;gap:6px}}
 
-/* ---------- flow ---------- */
-.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;counter-reset:s;position:relative}
-.step{padding:0 18px 0 0;position:relative}
-.step .dot{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font-family:var(--font-mono);font-weight:600;font-size:13px;background:var(--bg);position:relative;z-index:1}
-.step:last-child .dot{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.step::before{content:"";position:absolute;top:22px;left:44px;right:0;height:1.5px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 12px)}
-.step:last-child::before{display:none}
-.step h3{font-size:17px;font-weight:700;margin:18px 0 8px}
-.step p{font-size:13.5px;color:var(--ink-2);line-height:1.75}
-@media (max-width:860px){
-  .steps{grid-template-columns:1fr;gap:0}
-  .step{display:grid;grid-template-columns:44px 1fr;column-gap:18px;padding:0 0 28px}
-  .step .dot{grid-row:span 2}
-  .step h3{margin:8px 0 4px}
-  .step::before{top:44px;left:21px;right:auto;bottom:0;width:1.5px;height:auto;background:repeating-linear-gradient(180deg,var(--line) 0 6px,transparent 6px 12px)}
-}
-
-/* ---------- profile ---------- */
-#profile{background:var(--bg-2);border-top:1px solid var(--line)}
-.profile{display:grid;grid-template-columns:360px 1fr;gap:56px;align-items:start}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;position:sticky;top:96px}
-.avatar{width:148px;height:148px;border-radius:32px;background:#fff;border:1px solid var(--line);overflow:hidden;object-fit:cover}
-.card h3{font-size:26px;font-weight:900;margin-top:20px}
-.card .role{font-family:var(--font-mono);font-size:12px;color:var(--ink-3)}
-.card p{font-size:14.5px;color:var(--ink-2);margin-top:16px}
-.card .btn{margin-top:22px;width:100%;justify-content:center}
-.hours{margin:20px 0 0;display:grid;gap:10px;padding:16px;border-radius:14px;background:var(--bg-2)}
-.hours div{display:grid;grid-template-columns:64px 1fr;gap:10px;font-size:13.5px;line-height:1.6}
-.hours dt{font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--ink-3);padding-top:2px}
-.hours dd{margin:0;font-weight:700}
-.hours small{display:block;font-weight:400;font-size:12px;color:var(--ink-3)}
-.stack-grid{display:grid;gap:0;border-top:1px solid var(--line)}
-.srow{display:grid;grid-template-columns:140px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--line);align-items:center}
-.srow dt{font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
-.srow dd{margin:0;display:flex;flex-wrap:wrap;gap:8px}
-.srow dd span{font-size:14px;font-weight:500;padding:6px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
-.values-title{margin:44px 0 16px;font-size:20px;font-weight:900}
-.values{margin-top:0;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.value{padding:20px 22px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
-.value b{display:block;font-size:15px;margin-bottom:4px}
-.value span{font-size:13.5px;color:var(--ink-2)}
-@media (max-width:960px){.profile{grid-template-columns:1fr;gap:36px}.card{position:static}}
-@media (max-width:560px){.srow{grid-template-columns:1fr;gap:10px}.values{grid-template-columns:1fr}}
-
-/* ---------- contact ---------- */
-.contact{padding:0 0 112px;background:var(--bg-2)}
-.cta{border-radius:32px;background:var(--accent);color:var(--accent-ink);padding:72px 56px;position:relative;overflow:hidden;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end}
-.cta::before{content:"";position:absolute;width:520px;height:520px;right:-140px;top:-200px;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--accent-ink) 25%,transparent);box-shadow:0 0 0 70px color-mix(in srgb,var(--accent-ink) 5%,transparent),0 0 0 140px color-mix(in srgb,var(--accent-ink) 4%,transparent)}
-.cta .eyebrow{color:var(--accent-ink);opacity:.8}
-.cta h2{font-size:clamp(30px,4.6vw,52px);font-weight:900}
-.cta p{margin-top:18px;opacity:.85;max-width:520px}
-.cta-actions{display:flex;flex-direction:column;gap:12px;position:relative}
-.cta .btn-light{background:var(--accent-ink);color:var(--accent);justify-content:space-between}
-.cta .btn-line{border-color:color-mix(in srgb,var(--accent-ink) 40%,transparent);color:var(--accent-ink);justify-content:space-between}
-.cta .btn-line:hover{border-color:var(--accent-ink)}
-.cta small{font-size:12.5px;opacity:.8;margin:-4px 0 8px;line-height:1.6}
-@media (max-width:860px){.cta{grid-template-columns:1fr;padding:48px 24px;border-radius:24px}}
-
-footer{padding:40px 0 32px;border-top:1px solid var(--line);background:var(--bg-2)}
-.foot-brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--ink)}
-.foot-brand img{border-radius:8px;border:1px solid var(--line);background:#fff}
-.foot-links{display:flex;flex-wrap:wrap;gap:6px 20px}
-footer small{width:100%;font-size:12px}
-.more summary{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;font-size:14px;font-weight:700;color:var(--accent);cursor:pointer;list-style:none}
-.more summary::-webkit-details-marker{display:none}
-.more summary::after{content:"＋";font-size:13px}
-.more[open] summary::after{content:"−"}
-@media (min-width:901px){.more summary{display:none}}
-.more:not([open]) + .stack{margin-top:16px}
-.mid-cta{margin-top:40px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:28px 32px;border-radius:22px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
-.mid-cta b{display:block;font-family:var(--font-display);font-size:20px;font-weight:900;margin-bottom:4px}
-.mid-cta span{font-size:14px;color:var(--ink-2)}
-@media (max-width:760px){.mid-cta{flex-direction:column;align-items:flex-start;padding:24px 22px}}
-.faq{display:grid;gap:12px;max-width:860px}
-.faq-item{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:0 22px}
-.faq-item summary{display:flex;align-items:center;gap:14px;padding:18px 0;font-weight:700;font-size:15.5px;cursor:pointer;list-style:none}
+/* ---------- faq ---------- */
+.faq{display:grid;gap:12px;max-width:820px;margin-inline:auto}
+.faq-item{border:1px solid var(--line);border-radius:18px;background:var(--surface);padding:0 24px}
+.faq-item summary{display:flex;align-items:center;gap:14px;padding:20px 0;font-weight:700;font-size:17px;cursor:pointer;list-style:none}
 .faq-item summary::-webkit-details-marker{display:none}
 .faq-item summary::after{content:"＋";margin-left:auto;color:var(--accent);font-weight:700}
 .faq-item[open] summary::after{content:"−"}
-.fq{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);font-family:var(--font-mono);font-size:13px}
-.faq-item p{padding:0 0 20px 42px;font-size:14.5px;color:var(--ink-2)}
-.cta-moe{width:112px;height:112px;border-radius:28px;background:#fff;margin-bottom:20px;box-shadow:0 10px 30px -10px rgba(0,0,0,.35)}
-.sticky-cta{display:none}
-@media (max-width:760px){
-  .sticky-cta{display:flex;position:fixed;left:16px;right:16px;bottom:16px;z-index:60;align-items:center;justify-content:center;gap:10px;padding:15px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:700;text-decoration:none;box-shadow:0 12px 30px -8px rgba(30,60,130,.5);transform:translateY(140%);transition:transform .3s}
-  .sticky-cta svg{width:16px;height:16px}
-  .sticky-cta.show{transform:none}
-  footer{padding-bottom:96px}
-}
-footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--ink-3)}
+.fq{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);font-size:14px;font-weight:700}
+.faq-item p{padding:0 0 22px 44px;color:var(--ink-2)}
+@media (max-width:560px){.faq-item{padding:0 18px}.faq-item p{padding-left:0}}
+
+/* ---------- profile ---------- */
+.profile{display:grid;grid-template-columns:240px 1fr;gap:48px;align-items:start;max-width:920px;margin-inline:auto;background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:44px}
+.avatar{width:240px;height:240px;border-radius:32px;background:#fff;border:1px solid var(--line);object-fit:cover}
+.profile h3{font-size:30px;font-weight:900}
+.role{font-size:15px;color:var(--ink-3);font-weight:700}
+.bio{margin-top:14px;color:var(--ink-2)}
+.good{margin-top:24px;display:grid;gap:10px}
+.good li{display:flex;gap:10px;align-items:baseline;font-size:16px}
+.good li::before{content:"✓";color:var(--accent);font-weight:900}
+.good{list-style:none;padding:0}
+.good b{font-weight:700}
+.hours{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+.hours span{font-size:15px;padding:8px 14px;border-radius:12px;background:var(--bg-2)}
+.hours b{color:var(--accent);margin-right:6px}
+.skills{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
+.skills span{font-size:14px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2)}
+.profile .btn{margin-top:24px}
+@media (max-width:860px){.profile{grid-template-columns:1fr;gap:24px;padding:28px 22px;text-align:left}.avatar{width:160px;height:160px}}
+
+/* ---------- contact ---------- */
+.contact{padding:0 0 104px}
+.cta{border-radius:32px;background:var(--accent);color:var(--accent-ink);padding:64px 56px;position:relative;overflow:hidden;display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center}
+.cta::before{content:"";position:absolute;width:520px;height:520px;right:-160px;top:-220px;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--accent-ink) 25%,transparent);box-shadow:0 0 0 70px color-mix(in srgb,var(--accent-ink) 5%,transparent)}
+.cta-moe{width:150px;height:150px;border-radius:32px;background:#fff;position:relative;box-shadow:0 10px 30px -10px rgba(0,0,0,.35)}
+.cta h2{font-size:clamp(28px,4vw,42px);font-weight:900;position:relative}
+.cta p{margin-top:12px;opacity:.9;position:relative}
+.cta-actions{display:flex;flex-direction:column;gap:10px;position:relative;min-width:290px}
+.cta-actions .btn{justify-content:space-between}
+.cta .btn-light{background:var(--accent-ink);color:var(--accent)}
+.cta .btn-line{border-color:color-mix(in srgb,var(--accent-ink) 45%,transparent);color:var(--accent-ink)}
+.cta .btn-line:hover{border-color:var(--accent-ink)}
+.cta small{font-size:14px;opacity:.9;text-align:center}
+@media (max-width:960px){.cta{grid-template-columns:1fr;padding:44px 24px;border-radius:24px;gap:24px;text-align:center}.cta-moe{margin-inline:auto;width:120px;height:120px}.cta-actions{min-width:0}}
+
+footer{padding:40px 0 32px;border-top:1px solid var(--line);background:var(--bg-2)}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:15px;color:var(--ink-2)}
+.foot-brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--ink)}
+.foot-brand img{border-radius:8px;border:1px solid var(--line);background:#fff}
+.foot-links{display:flex;flex-wrap:wrap;gap:8px 22px}
 footer a{text-decoration:none}
 footer a:hover{color:var(--ink)}
+footer small{width:100%;font-size:13px;color:var(--ink-3)}
+
+.sticky-cta{display:none}
+@media (max-width:760px){
+  .sticky-cta{display:flex;position:fixed;left:16px;right:16px;bottom:16px;z-index:60;align-items:center;justify-content:center;gap:10px;padding:16px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:16px;text-decoration:none;box-shadow:0 12px 30px -8px rgba(30,60,130,.5);transform:translateY(140%);transition:transform .3s}
+  .sticky-cta svg{width:17px;height:17px}
+  .sticky-cta.show{transform:none}
+  footer{padding-bottom:100px}
+}
 
 /* ---------- reveal ---------- */
-.rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -446,20 +295,20 @@ footer a:hover{color:var(--ink)}
 
 <header class="header" id="header">
   <div class="wrap">
-    <a href="#top" class="logo" aria-label="Moe トップへ"><img class="logo-mark" src="images/logo.png" alt="" width="40" height="40">もえ</a>
+    <a href="#top" class="logo" aria-label="もえ トップへ"><img src="images/logo.png" alt="" width="42" height="42">もえ</a>
     <div class="head-right">
       <nav class="nav" id="nav" aria-label="メイン">
         <a href="#works">制作実績</a>
-        <a href="#services">サービス</a>
-        <a href="#flow">制作の流れ</a>
+        <a href="#services">サービス・料金</a>
+        <a href="#faq">よくある質問</a>
         <a href="#profile">プロフィール</a>
         <a href="#contact" class="nav-cta">相談する</a>
       </nav>
-      <button class="theme-btn" id="themeBtn" aria-label="ライト／ダーク切り替え">
+      <button class="icon-btn" id="themeBtn" aria-label="ライト／ダーク切り替え">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
       </button>
-      <button class="menu-btn" id="menuBtn" aria-label="メニュー" aria-expanded="false" aria-controls="nav">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="メニュー" aria-expanded="false" aria-controls="nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </div>
   </div>
@@ -473,64 +322,44 @@ footer a:hover{color:var(--ink)}
     <div>
       <div class="status"><span class="dot"></span>ご相談受付中・初めての方も歓迎</div>
       <h1>日常や業務の<br><span class="hl">「面倒」</span>を、<br><span class="ai">AI</span>でシンプルに。</h1>
-      <p class="hero-lead">LINE・Googleツール・生成AIをつなぎ、毎日の手作業を減らす仕組みをつくります。業務効率化ツールからLINE Bot・Webアプリまで、企画・設計・開発・公開を一人で一貫して担当します。</p>
+      <p class="hero-lead">Googleツール・LINE・AIで、毎日の手作業を減らす仕組みをつくります。</p>
       <div class="hero-ctas">
         <a href="#works" class="btn btn-primary">制作実績を見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a href="#contact" class="btn btn-ghost">無料で相談する</a>
       </div>
       <div class="hero-meta">
-        <a href="#works"><strong>6</strong><span>掲載作品</span></a>
-        <a href="#services"><strong>3,000<small>円〜</small></strong><span>ココナラで出品中</span></a>
-        <a href="#profile"><strong>24<small>h</small></strong><span>以内に返信</span></a>
+        <div><strong>3,000<small>円〜</small></strong><span>ココナラで出品中</span></div>
+        <div><strong>3<small>日〜</small></strong><span>お届け目安</span></div>
+        <div><strong>24<small>h</small></strong><span>以内に返信</span></div>
       </div>
     </div>
-
-    <div class="pipe" aria-hidden="true">
-      <div class="pipe-bar"><i></i><i></i><i></i><span>automation.flow</span></div>
-      <div class="node" data-step="0">
-        <div class="ico" style="background:#06C755">LINE</div>
-        <div><b>写真・メッセージを受信</b><small>「今日のランチ」+ 写真1枚</small></div>
-        <span class="tag">trigger</span>
-      </div>
-      <div class="conn"></div>
-      <div class="node" data-step="1">
-        <div class="ico" style="background:#15171C">AI</div>
-        <div><b>AIが内容を解析・要約</b><small>品目・カロリー・カテゴリを抽出</small></div>
-        <span class="tag">OpenAI</span>
-      </div>
-      <div class="conn"></div>
-      <div class="node" data-step="2">
-        <div class="ico" style="background:#1E8E3E">GS</div>
-        <div><b>スプレッドシートへ自動記録</b><small>日次・週次レポートも自動生成</small></div>
-        <span class="tag">Sheets API</span>
-      </div>
-      <div class="pipe-out"><span class="ok">✓</span> 記録しました：カレー / 昼食 / 2026-10-05<br><span class="typing">→ 今週の記録 5件。週次レポートを送信します</span></div>
+    <div class="hero-art">
+      <img src="images/moe.webp" alt="ノートパソコンの前でコーヒーを持つ、もえのイラスト" width="440" height="440">
+      <span class="bubble b1">転記・集計を自動化</span>
+      <span class="bubble b2">確認メールも自動で</span>
+      <span class="bubble b3">LINEでお知らせ</span>
     </div>
   </div>
 </section>
 
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>OpenAI API</span><span>Claude API</span><span>Dify</span><span>LINE Messaging API</span><span>Google Sheets API</span><span>Google Calendar API</span><span>Google Places API</span><span>GAS</span><span>Next.js</span><span>React</span><span>TypeScript</span><span>Python</span><span>Flask</span><span>Streamlit</span>
-    <span>OpenAI API</span><span>Claude API</span><span>Dify</span><span>LINE Messaging API</span><span>Google Sheets API</span><span>Google Calendar API</span><span>Google Places API</span><span>GAS</span><span>Next.js</span><span>React</span><span>TypeScript</span><span>Python</span><span>Flask</span><span>Streamlit</span>
-  </div>
-</div>
-
 <!-- ================= PROBLEMS ================= -->
-<section id="problems">
+<section id="problems" class="alt">
   <div class="wrap">
     <div class="sec-head rv">
-      <div><div class="eyebrow">Problems</div><h2 class="sec-title">こんなお悩み、ありませんか？</h2></div>
-      <p class="sec-lead">「何を頼めばいいか分からない」段階でも大丈夫です。今の作業を伺うところから始めます。</p>
+      <div class="eyebrow">PROBLEMS</div>
+      <h2 class="sec-title">こんなお悩み、<span class="nw">ありませんか？</span></h2>
     </div>
-    <div class="problems">
-      <div class="prob rv"><span class="q">Q.01</span><p>毎日の転記や集計を、そろそろ自動化したい</p><span class="a">→ GAS・Sheets連携で自動化</span></div>
-      <div class="prob rv"><span class="q">Q.02</span><p>LINEの問い合わせ対応に時間を取られている</p><span class="a">→ LINE Bot＋AIで一次対応</span></div>
-      <div class="prob rv"><span class="q">Q.03</span><p>予約のたびに、カレンダー登録と確認メールを手作業で送っている</p><span class="a">→ フォームから全部自動化</span></div>
-      <div class="prob rv"><span class="q">Q.04</span><p>カレンダーやメールをバラバラに使っている</p><span class="a">→ Googleサービスを連携</span></div>
-      <div class="prob rv"><span class="q">Q.05</span><p>AIを使ってみたいが、業務への活かし方が分からない</p><span class="a">→ 小さく試せる形で提案</span></div>
+    <div class="probs">
+      <div class="prob rv"><span class="q">お悩み 1</span><p>毎日の転記や集計に、時間を取られている</p></div>
+      <div class="prob rv"><span class="q">お悩み 2</span><p>予約のたびに、カレンダー登録と確認メールを手作業で送っている</p></div>
+      <div class="prob rv"><span class="q">お悩み 3</span><p>LINEやメールで、同じ質問に何度も答えている</p></div>
     </div>
-    <p class="answer rv">そのお悩み、AIと仕組みづくりで解決できます。</p>
+    <p class="answer rv">その作業、<span class="nw"><em>仕組みで自動化</em>できます。</span></p>
+    <div class="strs">
+      <div class="str rv"><span class="ico">👂</span><div><b>丁寧なヒアリング</b><span>何を頼めばいいか分からなくても大丈夫です。</span></div></div>
+      <div class="str rv"><span class="ico">⚡</span><div><b>24時間以内に返信</b><span>試作品を早くお見せして、一緒に調整します。</span></div></div>
+      <div class="str rv"><span class="ico">💬</span><div><b>専門用語なしで説明</b><span>使い方まで分かりやすくご案内します。</span></div></div>
+    </div>
   </div>
 </section>
 
@@ -538,386 +367,210 @@ footer a:hover{color:var(--ink)}
 <section id="works">
   <div class="wrap">
     <div class="sec-head rv">
-      <div><div class="eyebrow">Works</div><h2 class="sec-title">制作実績</h2></div>
-      <p class="sec-lead">Googleツール・LINE・AIをつなぎ、毎日の手作業を減らす仕組みを中心に掲載しています。「誰の」「どんな課題を」「どう解決するか」を軸に、企画から公開まで一人で手がけました。</p>
+      <div class="eyebrow">WORKS</div>
+      <h2 class="sec-title">制作実績</h2>
+      <p class="sec-lead">実際に作って公開しているツールです。</p>
     </div>
+    <div class="works">
 
-    <div class="filters rv" role="group" aria-label="カテゴリで絞り込み">
-      <button class="filter" aria-pressed="true" data-f="all">すべて<span class="n">6</span></button>
-      <button class="filter" aria-pressed="false" data-f="ai">生成AI<span class="n">3</span></button>
-      <button class="filter" aria-pressed="false" data-f="google">Google連携<span class="n">5</span></button>
-      <button class="filter" aria-pressed="false" data-f="line">LINE<span class="n">3</span></button>
-      <button class="filter" aria-pressed="false" data-f="gas">GAS<span class="n">2</span></button>
-    </div>
-
-    <div class="works" id="worksList">
-
-      <!-- 01 -->
-      <article class="work rv" data-cat="google gas">
+      <article class="work rv">
         <div class="work-visual">
-          <span class="num">01 / 06</span>
           <span class="img-note">※画面はイメージです</span>
-          <div class="mock">
-            <div class="mock-bar"><i></i><i></i><i></i><span class="url">予約回答 – Google スプレッドシート</span></div>
-            <div class="mock-in">
-              <div class="gs">
-                <div class="gs-h"><span>回答日時</span><span>お名前</span><span>希望日時</span><span>処理</span></div>
-                <div><span>10/03 09:12</span><span>佐藤 様</span><span>10/07 10:00</span><span class="ok">完了</span></div>
-                <div><span>10/03 14:40</span><span>鈴木 様</span><span>10/08 13:00</span><span class="ok">完了</span></div>
-                <div><span>10/04 08:05</span><span>高橋 様</span><span>10/09 15:00</span><span class="ng">エラー</span></div>
-                <div><span>10/05 11:30</span><span>田中 様</span><span>10/10 11:00</span><span class="run">処理中</span></div>
-              </div>
-              <div class="m-row" style="margin-top:12px;gap:6px;flex-wrap:wrap"><span class="m-chip">📅 Calendar登録</span><span class="m-chip">✉ 完了メール送信</span><span class="m-chip on">↻ 選択行を再実行</span></div>
-            </div>
+          <div class="gs">
+            <div class="bar">予約回答 – Google スプレッドシート</div>
+            <div class="row h"><span>お名前</span><span>希望日時</span><span>処理</span></div>
+            <div class="row"><span>佐藤 様</span><span>10/07 10:00</span><span class="ok">完了</span></div>
+            <div class="row"><span>鈴木 様</span><span>10/08 13:00</span><span class="ok">完了</span></div>
+            <div class="row"><span>田中 様</span><span>10/10 11:00</span><span class="run">処理中</span></div>
+            <div class="row"><span>高橋 様</span><span>10/11 15:00</span><span class="run">処理中</span></div>
           </div>
-          <div class="float" style="left:22px;bottom:22px">予定の二重作成を <b>防止</b></div>
         </div>
         <div class="work-body">
-          <div class="work-cat"><span>Google連携</span><span>GAS</span></div>
+          <div class="tags"><span>GAS</span><span>Google連携</span></div>
           <h3>Google予約受付の自動化</h3>
-          <p class="catch">フォームに予約が入ったら、あとはおまかせ。</p>
-          <details class="more">
-            <summary>詳しく見る</summary>
-          <dl class="psr">
-            <div><dt>対象</dt><dd>Googleフォームでオンライン相談などの予約を受け付ける小規模事業者</dd></div>
-            <div><dt>お悩み</dt><dd>予約のたびに、カレンダーへの予定登録・確認メールの送信・処理状況の記録を手作業で行う手間</dd></div>
-            <div><dt>解決</dt><dd>フォーム回答をもとに、GASがカレンダーへの予定登録と予約完了メールの送信を自動実行。処理結果やエラーをシートに記録し、選択した行だけ再実行できる。</dd></div>
-            <div class="pt"><dt>工夫</dt><dd>CalendarのイベントIDを保存し、同じ回答行を再実行しても予定が二重に作成されない仕組みに。</dd></div>
-          </dl>
-          </details>
-          <div class="stack"><span>Google Apps Script</span><span>Google Forms</span><span>Google Sheets</span><span>Google Calendar</span><span>Gmail</span></div>
+          <p class="desc">フォームに予約が入ると、カレンダー登録と確認メールの送信まで自動で行います。</p>
+          <p class="point"><b>工夫</b>同じ予約を再処理しても、予定が二重に登録されない仕組み</p>
           <div class="links">
             <span class="soon">Googleアカウント上で動作</span>
-            <a class="gh" href="https://github.com/moedaichi0629-ai/google-booking-automation" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+            <a class="gh" href="https://github.com/moedaichi0629-ai/google-booking-automation" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
       </article>
-      <!-- 02 -->
-      <article class="work rv" data-cat="ai line web">
+
+      <article class="work rv">
         <div class="work-visual">
-          <span class="num">02 / 06</span>
-          <a class="shot" href="images/works/line-bot.webp" target="_blank" rel="noopener" aria-label="スクリーンショットを拡大">
-            <div class="mock-bar"><i></i><i></i><i></i><span class="url">line-reservation-bot-two.vercel.app/admin</span></div>
-            <img src="images/works/line-bot.webp" alt="LINE問い合わせAI Botの管理画面（FAQ管理・会話ログ・お知らせ配信のメニュー）" width="960" height="772" loading="lazy">
-          </a>
-          <div class="float" style="right:22px;top:20px">FAQに根拠なし → <b>スタッフへ通知</b></div>
+          <div class="shot"><img src="images/works/gas-blog.webp" alt="キーワードから生成した記事タイトル・本文が書き出されたスプレッドシート" width="960" height="595" loading="lazy"></div>
         </div>
         <div class="work-body">
-          <div class="work-cat"><span>生成AI</span><span>LINE</span><span>Webアプリ</span></div>
-          <h3>LINE問い合わせAI Bot</h3>
-          <p class="catch">よくある質問はAIが即答、迷う質問は人へ。</p>
-          <details class="more">
-            <summary>詳しく見る</summary>
-          <dl class="psr">
-            <div><dt>対象</dt><dd>個人経営の美容室など、LINEで問い合わせを受ける店舗</dd></div>
-            <div><dt>お悩み</dt><dd>「営業時間は？」「駐車場は？」と繰り返し届く質問への対応と、答えられない質問のスタッフへの引き継ぎ</dd></div>
-            <div><dt>解決</dt><dd>オーナーが登録したFAQをもとにClaudeが自動回答。根拠がない・確信度が低い質問はAIの回答を送らずオーナーへ通知。FAQ編集・会話ログ・お知らせ配信はスマホの管理画面から。</dd></div>
-            <div class="pt"><dt>工夫</dt><dd>回答の根拠となるFAQを検証し、根拠がなければAIの回答を送らない設計に。Webhook署名検証と、二重処理・二重配信の防止も実装。</dd></div>
-          </dl>
-          </details>
-          <div class="stack"><span>Next.js</span><span>TypeScript</span><span>Claude API</span><span>LINE Messaging API</span><span>Supabase</span></div>
-          <div class="links">
-            <a class="demo" href="https://line-reservation-bot-two.vercel.app/" target="_blank" rel="noopener">紹介ページを見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-            <a class="gh" href="https://github.com/moedaichi0629-ai/line-reservation-bot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
-          </div>
-        </div>
-      </article>
-      <!-- 03 -->
-      <article class="work rv" data-cat="ai google gas">
-        <div class="work-visual">
-          <span class="num">03 / 06</span>
-          <a class="shot" href="images/works/gas-blog.webp" target="_blank" rel="noopener" aria-label="スクリーンショットを拡大">
-            <div class="mock-bar"><i></i><i></i><i></i><span class="url">AIブログ記事自動生成ツール – Google スプレッドシート</span></div>
-            <img src="images/works/gas-blog.webp" alt="キーワードから生成した記事タイトル・本文が書き出されたスプレッドシート" width="960" height="595" loading="lazy">
-          </a>
-          <div class="float" style="right:22px;bottom:22px">Claude API で <b>下書き生成</b></div>
-        </div>
-        <div class="work-body">
-          <div class="work-cat"><span>生成AI</span><span>Google連携</span><span>GAS</span></div>
-          <h3>GAS × AI ブログ記事下書き生成</h3>
-          <p class="catch">キーワードを入れるだけで、記事の下書きがシートに並ぶ。</p>
-          <details class="more">
-            <summary>詳しく見る</summary>
-          <dl class="psr">
-            <div><dt>対象</dt><dd>オウンドメディアの記事制作担当者</dd></div>
-            <div><dt>お悩み</dt><dd>キーワードごとに記事の下書きを作り、制作状況を記録していく手間</dd></div>
-            <div><dt>解決</dt><dd>スプレッドシートのキーワードからClaude APIでタイトル・本文・メタディスクリプションを生成し、同じシートに書き出す。生成状況の管理と文字数チェック付きで、人が確認してから使う運用。</dd></div>
-            <div class="pt"><dt>工夫</dt><dd>生成結果は人が確認してから使う運用を前提に設計。APIキーはスクリプトプロパティで管理し、コードに書かない。</dd></div>
-          </dl>
-          </details>
-          <div class="stack"><span>Google Apps Script</span><span>Google Sheets</span><span>Claude API</span></div>
+          <div class="tags"><span>GAS</span><span>生成AI</span></div>
+          <h3>AIブログ記事の下書き生成</h3>
+          <p class="desc">スプレッドシートにキーワードを入れるだけで、記事のタイトルと本文の下書きをAIが作ります。</p>
+          <p class="point"><b>工夫</b>AIの文章は人が確認してから使う、安全な運用を前提に設計</p>
           <div class="links">
             <span class="soon">Googleアカウント上で動作</span>
-            <a class="gh" href="https://github.com/moedaichi0629-ai/gas-ai-blog-automation" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+            <a class="gh" href="https://github.com/moedaichi0629-ai/gas-ai-blog-automation" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
       </article>
-      <!-- 04 -->
-      <article class="work rv" data-cat="google line web">
+
+      <article class="work rv">
         <div class="work-visual">
-          <span class="num">04 / 06</span>
-          <a class="shot" href="images/works/todo.webp" target="_blank" rel="noopener" aria-label="スクリーンショットを拡大">
-            <div class="mock-bar"><i></i><i></i><i></i><span class="url">todo-app-1p8e.onrender.com</span></div>
-            <img src="images/works/todo.webp" alt="Todo一覧画面。優先度・期限のラベルとLINE通知ボタン" width="960" height="887" loading="lazy">
-          </a>
-          <div class="float" style="left:22px;bottom:22px"><b>LINE</b>：期限が近いタスクが1件あります</div>
+          <div class="shot"><img src="images/works/todo.webp" alt="Todo一覧画面。優先度・期限のラベルとLINE通知ボタン" width="960" height="887" loading="lazy"></div>
         </div>
         <div class="work-body">
-          <div class="work-cat"><span>Google連携</span><span>LINE</span><span>Webアプリ</span></div>
-          <h3>Todo管理 × 期限LINE通知</h3>
-          <p class="catch">期限が近づいたら、LINEで知らせてくれる。</p>
-          <details class="more">
-            <summary>詳しく見る</summary>
-          <dl class="psr">
-            <div><dt>対象</dt><dd>タスクをスプレッドシートでも記録・確認したい個人・小さなチーム</dd></div>
-            <div><dt>お悩み</dt><dd>タスク管理と期限確認が別々になり、確認の手間が増える・期限を忘れる</dd></div>
-            <div><dt>解決</dt><dd>Web画面で登録したタスクをGoogleスプレッドシートに保存し、期日が近い未完了タスクをLINEで通知。キーワード・期限・完了状態で絞り込みもできる。</dd></div>
-            <div class="pt"><dt>工夫</dt><dd>専用DBを使わずGoogle Sheetsを保存先にし、Web画面とスプレッドシートの両方から記録を確認できる構成に。</dd></div>
-          </dl>
-          </details>
-          <div class="stack"><span>Python</span><span>Flask</span><span>Google Sheets API</span><span>LINE Messaging API</span><span>Render</span></div>
+          <div class="tags"><span>LINE</span><span>Google連携</span></div>
+          <h3>Todo管理 × 期限のLINE通知</h3>
+          <p class="desc">期限が近いタスクをLINEでお知らせ。データはスプレッドシートでも確認できます。</p>
+          <p class="point"><b>工夫</b>専用のデータベースを使わず、普段のスプレッドシートで管理できる構成</p>
           <div class="links">
             <a class="demo" href="https://todo-app-1p8e.onrender.com/" target="_blank" rel="noopener">デモを見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-            <a class="gh" href="https://github.com/moedaichi0629-ai/todo-app" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+            <a class="gh" href="https://github.com/moedaichi0629-ai/todo-app" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
       </article>
-      <!-- 05 -->
-      <article class="work rv" data-cat="google web">
+
+      <article class="work rv">
         <div class="work-visual">
-          <span class="num">05 / 06</span>
-          <a class="shot" href="images/works/schedule.webp" target="_blank" rel="noopener" aria-label="スクリーンショットを拡大">
-            <div class="mock-bar"><i></i><i></i><i></i><span class="url">schedule-adjustment-tool.streamlit.app</span></div>
-            <img src="images/works/schedule.webp" alt="候補日をもとにLINE・メール用の送信文章を生成した画面" width="955" height="672" loading="lazy">
-          </a>
-          <div class="float" style="left:22px;top:20px">✓ 空き時間を <b>自動抽出</b></div>
+          <div class="shot"><img src="images/works/line-bot.webp" alt="LINE問い合わせAI Botの管理画面（FAQ管理・会話ログ・お知らせ配信のメニュー）" width="960" height="772" loading="lazy"></div>
         </div>
         <div class="work-body">
-          <div class="work-cat"><span>Google連携</span><span>Webアプリ</span></div>
-          <h3>日程調整ツール</h3>
-          <p class="catch">空き時間の抽出から、送る文章まで自動で。</p>
-          <details class="more">
-            <summary>詳しく見る</summary>
-          <dl class="psr">
-            <div><dt>対象</dt><dd>商談・面談の日程調整に時間を取られている個人事業主・営業担当</dd></div>
-            <div><dt>お悩み</dt><dd>「候補日を出すのに時間がかかる」「ダブルブッキングが心配」</dd></div>
-            <div><dt>解決</dt><dd>Googleカレンダーと連携して空き時間を自動抽出し、候補日とLINE・メール向けの案内文まで自動生成。</dd></div>
-            <div class="pt"><dt>工夫</dt><dd>候補日の抽出から案内文の作成・予定登録までを、一つの画面で完結できる流れに。</dd></div>
-          </dl>
-          </details>
-          <div class="stack"><span>Python</span><span>Streamlit</span><span>Google Calendar API</span><span>OAuth 2.0</span></div>
+          <div class="tags"><span>LINE</span><span>生成AI</span></div>
+          <h3>LINE問い合わせAI Bot</h3>
+          <p class="desc">よくある質問にはAIが自動で回答し、判断が難しい質問はスタッフにつなぎます。</p>
+          <p class="point"><b>工夫</b>根拠のない回答は送らず、間違った案内をしない設計</p>
           <div class="links">
-            <a class="demo" href="https://schedule-adjustment-tool-eap349ikdfvjevnzg55qi7.streamlit.app/" target="_blank" rel="noopener">デモを見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-            <a class="gh" href="https://github.com/moedaichi0629-ai/schedule-adjustment-tool" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
-          </div>
-        </div>
-      </article>
-      <!-- 06 -->
-      <article class="work rv" data-cat="ai google line">
-        <div class="work-visual">
-          <span class="num">06 / 06</span>
-          <a class="shot" href="images/works/meal.webp" target="_blank" rel="noopener" aria-label="スクリーンショットを拡大">
-            <div class="mock-bar"><i></i><i></i><i></i><span class="url">LINE · 食事記録Bot</span></div>
-            <img src="images/works/meal.webp" alt="LINEに食事の写真を送り、Botが受け取って食事区分を尋ねているトーク画面" width="960" height="647" loading="lazy">
-          </a>
-          <div class="float" style="right:22px;bottom:22px">📊 週次レポート <b>自動送信</b></div>
-        </div>
-        <div class="work-body">
-          <div class="work-cat"><span>生成AI</span><span>LINE</span><span>Google連携</span></div>
-          <h3>LINE × AI 記録自動化</h3>
-          <p class="catch">写真を送るだけで、記録もレポートも自動に。</p>
-          <details class="more">
-            <summary>詳しく見る</summary>
-          <dl class="psr">
-            <div><dt>対象</dt><dd>日々のちょっとした記録をLINEで済ませたい方・店舗</dd></div>
-            <div><dt>お悩み</dt><dd>「記録が続かない」「スプレッドシートを開くのが面倒」</dd></div>
-            <div><dt>解決</dt><dd>LINEに写真を送るとAIが内容を解析し、Googleスプレッドシートへ自動記録。日次・週次のレポートも自動生成。</dd></div>
-            <div class="pt"><dt>工夫</dt><dd>画像入力・会話フロー・シート保存を組み合わせ、アプリを開かずLINEの中だけで記録が完結。</dd></div>
-          </dl>
-          </details>
-          <div class="stack"><span>Python</span><span>Flask</span><span>LINE Messaging API</span><span>OpenAI Vision</span><span>Google Sheets API</span></div>
-          <div class="links">
-            <span class="soon">LINE上で動作</span>
-            <a class="gh" href="https://github.com/moedaichi0629-ai/meal_management_tool" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+            <a class="demo" href="https://line-reservation-bot-two.vercel.app/" target="_blank" rel="noopener">紹介ページ<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+            <a class="gh" href="https://github.com/moedaichi0629-ai/line-reservation-bot" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
       </article>
 
     </div>
     <div class="mid-cta rv">
-      <div><b>この作品のような自動化、あなたの業務にも。</b><span>「うちの作業でもできる？」という段階から、無料でお見積りします。</span></div>
+      <div><b>あなたの業務も、<span class="nw">自動化できるかも。</span></b><span>「この作業もできる？」から、無料でお見積りします。</span></div>
       <a href="https://coconala.com/users/6188345" target="_blank" rel="noopener" class="btn btn-primary">ココナラで相談する<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     </div>
-    <p class="note">※ 掲載作品は個人開発・模擬案件の制作例です。その他の作品（文章添削AI・歌舞伎予習AI・店舗情報管理ツールなど）は <a href="https://github.com/moedaichi0629-ai" target="_blank" rel="noopener">GitHub</a> で公開しています。</p>
-  </div>
-</section>
-
-<!-- ================= STRENGTHS ================= -->
-<section id="strengths">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <div><div class="eyebrow">Strengths</div><h2 class="sec-title">大切にしていること</h2></div>
-      <p class="sec-lead">つくって終わりではなく、「使い続けられる」ことまでを考えて制作します。</p>
-    </div>
-    <div class="strengths">
-      <div class="str rv"><span class="n">01</span><h3>丁寧なヒアリング</h3><p>今の作業の流れを一緒に整理し、本当に自動化すべきポイントを見つけます。「何を頼めばいいか分からない」段階からご相談ください。</p></div>
-      <div class="str rv"><span class="n">02</span><h3>スピード感のある対応</h3><p>メッセージには24時間以内に返信します。小さく作って早くお見せし、触りながら調整するので、完成までの行き違いも少なくなります。</p></div>
-      <div class="str rv"><span class="n">03</span><h3>専門用語を使わない説明</h3><p>技術に詳しくない方にも分かる言葉でお伝えします。納品後にご自身で運用できるよう、使い方まで丁寧にご案内します。</p></div>
-    </div>
+    <p class="note">※ 掲載作品は個人開発・模擬案件の制作例です。ほかの作品は <a href="https://github.com/moedaichi0629-ai" target="_blank" rel="noopener">GitHub</a> で公開しています。</p>
   </div>
 </section>
 
 <!-- ================= SERVICES ================= -->
-<section id="services">
+<section id="services" class="alt">
   <div class="wrap">
     <div class="sec-head rv">
-      <div><div class="eyebrow">Services</div><h2 class="sec-title">サービスと料金</h2></div>
-      <p class="sec-lead">ココナラで出品中のサービスです。内容を伺ってからお見積りするので、「自動化できるか分からない」段階でもお気軽にご相談ください。</p>
+      <div class="eyebrow">SERVICES</div>
+      <h2 class="sec-title">サービスと料金</h2>
+      <p class="sec-lead">ココナラで出品中です。ご相談・お見積りは無料です。</p>
     </div>
     <div class="services">
       <div class="svc rv">
-        <span class="n">SERVICE 01</span>
-        <h3>スプレッドシート作業の自動化</h3>
-        <p>毎日の転記・集計・コピペ作業を、GASで自動化します。売上や件数の集計、入力チェックもおまかせください。</p>
-        <ul><li>データの自動転記・自動集計</li><li>入力内容・重複データのチェック</li><li>ボタン実行・毎日/毎週の定期処理</li></ul>
-        <div class="svc-foot">
-          <div class="price"><strong>3,000円</strong><span>〜 / お届け目安 3日〜</span></div>
-          <a class="svc-link" href="https://coconala.com/services/4364817" target="_blank" rel="noopener">ココナラで詳しく見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-        </div>
+        <span class="ico">📊</span>
+        <h3>スプレッドシートの自動化</h3>
+        <p>転記・集計・コピペなど、毎日の繰り返し作業を自動にします。</p>
+        <div class="price"><strong>3,000円</strong><span>〜 ／ 3日〜</span></div>
+        <a class="svc-link" href="https://coconala.com/services/4364817" target="_blank" rel="noopener">ココナラで詳しく見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
       </div>
-
       <div class="svc rv">
-        <span class="n">SERVICE 02</span>
-        <h3>Googleサービス連携の自動化</h3>
-        <p>フォーム・スプレッドシート・カレンダー・Gmailをつなぎ、複数サービスへの入力や登録をまとめて自動化します。</p>
-        <ul><li>フォーム回答 → シートへ自動記録</li><li>カレンダー登録・確認メールの自動送信</li><li>条件分岐・外部サービスとのAPI連携</li></ul>
-        <div class="svc-foot">
-          <div class="price"><strong>5,000円</strong><span>〜 / お届け目安 3日〜</span></div>
-          <a class="svc-link" href="https://coconala.com/services/4410770" target="_blank" rel="noopener">ココナラで詳しく見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-        </div>
+        <span class="ico">🔗</span>
+        <h3>Googleサービスの連携</h3>
+        <p>フォーム・カレンダー・Gmailをつなぎ、予約受付などをまとめて自動化します。</p>
+        <div class="price"><strong>5,000円</strong><span>〜 ／ 3日〜</span></div>
+        <a class="svc-link" href="https://coconala.com/services/4410770" target="_blank" rel="noopener">ココナラで詳しく見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
       </div>
-
       <div class="svc rv">
-        <span class="n">SERVICE 03</span>
+        <span class="ico">✉️</span>
         <h3>メール・通知の自動化</h3>
-        <p>毎回同じ内容のメールや期限前のリマインドを、スプレッドシートの情報から自動で送信します。</p>
-        <ul><li>期限前のリマインド通知</li><li>予約・申込後の確認メール</li><li>送信済み管理・定期メール</li></ul>
-        <div class="svc-foot">
-          <div class="price"><strong>3,000円</strong><span>〜 / お届け目安 3日〜</span></div>
-          <a class="svc-link" href="https://coconala.com/services/4410691" target="_blank" rel="noopener">ココナラで詳しく見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-        </div>
+        <p>確認メールや期限前のリマインドを、自動で送れるようにします。</p>
+        <div class="price"><strong>3,000円</strong><span>〜 ／ 3日〜</span></div>
+        <a class="svc-link" href="https://coconala.com/services/4410691" target="_blank" rel="noopener">ココナラで詳しく見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
       </div>
-
     </div>
-    <div class="svc-more rv">
-      <div><b>LINE Bot・AIツール・Webアプリ開発</b><span>LINEの問い合わせBot、AIによる文章・メールの下書き作成、SNS投稿文の生成、社内向けQ&amp;A Botなどの制作や、既存ツールの改善は、内容を伺って個別にお見積りします。</span></div>
-      <a href="#contact" class="btn btn-ghost">相談する<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <p class="svc-more rv"><b>LINE Bot・AIツール・Webアプリ</b>の制作も、内容を伺って個別にお見積りします。</p>
+
+    <div class="flow rv">
+      <h3>ご依頼の流れ</h3>
+      <ol class="steps">
+        <li><span>ヒアリング</span></li>
+        <li><span>ご提案・お見積り</span></li>
+        <li><span>試作品の確認</span></li>
+        <li><span>制作・調整</span></li>
+        <li><span>納品・使い方のご案内</span></li>
+      </ol>
+      <p>試作品の段階で実際に触っていただけるので、「思っていたのと違う」を防げます。</p>
     </div>
   </div>
 </section>
 
 <!-- ================= FAQ ================= -->
-<section id="faq" style="padding-top:0">
+<section id="faq">
   <div class="wrap">
     <div class="sec-head rv">
-      <div><div class="eyebrow">FAQ</div><h2 class="sec-title">よくあるご質問</h2></div>
-      <p class="sec-lead">ここにないことも、お気軽にご相談ください。</p>
+      <div class="eyebrow">FAQ</div>
+      <h2 class="sec-title">よくあるご質問</h2>
     </div>
     <div class="faq">
       <details class="faq-item rv">
         <summary><span class="fq">Q</span>相談だけでも大丈夫ですか？</summary>
-        <p>大丈夫です。ご相談・お見積りは無料です。今の作業内容を教えていただければ、自動化できるかどうかと、進め方・費用の目安をお伝えします。</p>
+        <p>大丈夫です。ご相談・お見積りは無料です。自動化できるかどうかと、費用の目安をお伝えします。</p>
       </details>
       <details class="faq-item rv">
-        <summary><span class="fq">Q</span>GASやプログラミングの知識がなくても依頼できますか？</summary>
-        <p>はい、知識は必要ありません。専門用語を使わずにご説明し、納品時には操作方法もご案内するので、ご自身で使い続けられます。</p>
+        <summary><span class="fq">Q</span>パソコンやGASに詳しくなくても頼めますか？</summary>
+        <p>はい。専門用語を使わずにご説明し、納品時には使い方もご案内します。</p>
       </details>
       <details class="faq-item rv">
-        <summary><span class="fq">Q</span>今使っているスプレッドシートを自動化できますか？</summary>
-        <p>できます。内容を確認したうえでお見積りします。個人情報・機密情報を削除したサンプルを共有いただけると、より正確に確認できます。</p>
+        <summary><span class="fq">Q</span>3,000円でどこまでやってもらえますか？</summary>
+        <p>簡単な自動化1件（動作確認・使い方の説明つき）です。機能の追加や連携は、事前にお見積りします。</p>
       </details>
       <details class="faq-item rv">
-        <summary><span class="fq">Q</span>3,000円でどこまで対応してもらえますか？</summary>
-        <p>簡単な自動化1件（スプレッドシート1ファイル・GASによる自動処理・動作確認・操作説明）が基本料金に含まれます。処理の追加や他サービスとの連携は、事前にお見積りします。</p>
+        <summary><span class="fq">Q</span>依頼前に何を準備すればいいですか？</summary>
+        <p>「今どんな作業をしているか」と「どこを楽にしたいか」だけで大丈夫です。あとはヒアリングで一緒に整理します。</p>
       </details>
-      <details class="faq-item rv">
-        <summary><span class="fq">Q</span>依頼するときに何を準備すればいいですか？</summary>
-        <p>「今どんな作業をしているか」「どの作業を自動化したいか」「希望の動き」「希望納期」を、分かる範囲で教えてください。うまく言葉にできなくても、ヒアリングで一緒に整理します。</p>
-      </details>
-      <details class="faq-item rv">
-        <summary><span class="fq">Q</span>納品後に修正してもらえますか？</summary>
-        <p>納品前に実際に動かして確認していただき、修正したうえで納品します。納品後に気になる点が出てきた場合も、お気軽にご相談ください。</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FLOW ================= -->
-<section id="flow" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <div><div class="eyebrow">Flow</div><h2 class="sec-title">制作の流れ</h2></div>
-      <p class="sec-lead">ご相談からお見積りまでは無料です。試作品の段階で、使い心地を確かめていただけます。</p>
-    </div>
-    <div class="steps">
-      <div class="step rv"><span class="dot">01</span><h3>ヒアリング</h3><p>現状の課題や、どんな作業を楽にしたいかを丁寧に伺います。</p></div>
-      <div class="step rv"><span class="dot">02</span><h3>ご提案</h3><p>課題に合わせて、必要な機能・構成・進め方をご提案します。</p></div>
-      <div class="step rv"><span class="dot">03</span><h3>試作品の確認</h3><p>主要機能が動く試作品に触れていただき、認識のズレをなくします。</p></div>
-      <div class="step rv"><span class="dot">04</span><h3>制作・動作確認</h3><p>フィードバックを反映して本制作。実際の業務環境で検証します。</p></div>
-      <div class="step rv"><span class="dot">05</span><h3>納品・サポート</h3><p>公開・納品のうえ、ご自身で運用できるよう使い方もご案内します。</p></div>
     </div>
   </div>
 </section>
 
 <!-- ================= PROFILE ================= -->
-<section id="profile">
-  <div class="wrap profile">
-    <aside class="card rv">
-      <img class="avatar" src="images/moe.webp" alt="もえのイラスト（ノートパソコンの前でコーヒーを持つ女性）" width="148" height="148" loading="lazy">
-      <h3>もえ</h3>
-      <span class="role">AI Developer / 業務自動化</span>
-      <p>エンジニアスクールで実践的な課題に取り組み、実際に動くツールを作りながら試行錯誤を重ねてきました。GoogleツールやLINE、生成AIを組み合わせ、日常や業務の「面倒」を減らす仕組みを、企画から公開まで一人で手がけています。</p>
-      <dl class="hours">
-        <div><dt>対応時間</dt><dd>平日 19:00〜22:00<br>土日祝 9:00〜22:00</dd></div>
-        <div><dt>返信</dt><dd>24時間以内<small>土日祝もご連絡いただけます</small></dd></div>
-      </dl>
-      <a href="https://github.com/moedaichi0629-ai" target="_blank" rel="noopener" class="btn btn-ghost">GitHubを見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    </aside>
-    <div>
-      <div class="rv"><div class="eyebrow">Skills</div><h2 class="sec-title" style="margin-bottom:32px">技術スタック</h2></div>
-      <dl class="stack-grid rv">
-        <div class="srow"><dt>AI</dt><dd><span>OpenAI API</span><span>Claude API</span><span>Dify</span><span>OpenAI Vision</span></dd></div>
-        <div class="srow"><dt>API</dt><dd><span>LINE Messaging API</span><span>Google Sheets</span><span>Google Calendar</span><span>Google Places</span><span>OAuth 2.0</span></dd></div>
-        <div class="srow"><dt>Frontend</dt><dd><span>React</span><span>Next.js</span><span>TypeScript</span></dd></div>
-        <div class="srow"><dt>Backend</dt><dd><span>Python</span><span>Flask</span><span>Streamlit</span><span>GAS</span></dd></div>
-        <div class="srow"><dt>Deploy</dt><dd><span>GitHub</span><span>Vercel</span><span>Netlify</span><span>Render</span></dd></div>
-      </dl>
-      <h3 class="values-title rv">得意なこと</h3>
-      <div class="values">
-        <div class="value rv"><b>Googleツールの自動化</b><span>GAS・スプレッドシート・カレンダー・Gmailをつなぎ、今ある環境のまま手作業を減らします。</span></div>
-        <div class="value rv"><b>AIを「安全に」組み込む設計</b><span>根拠がない回答は送らない、人が確認してから使うなど、AIの誤りが事故にならない仕組みにします。</span></div>
-        <div class="value rv"><b>使いやすい画面づくり</b><span>Illustrator・Canvaでのデザイン経験を活かし、迷わず使える画面や資料に仕上げます。</span></div>
-        <div class="value rv"><b>公開・運用まで一人で完結</b><span>デプロイ・動作確認・操作説明まで対応。作品はすべて公開URLやGitHubで確認できます。</span></div>
+<section id="profile" class="alt">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow">PROFILE</div>
+      <h2 class="sec-title">プロフィール</h2>
+    </div>
+    <div class="profile rv">
+      <img class="avatar" src="images/moe.webp" alt="もえのイラスト" width="240" height="240" loading="lazy">
+      <div>
+        <h3>もえ</h3>
+        <span class="role">AI開発・業務自動化</span>
+        <p class="bio">エンジニアスクールで実践的な課題に取り組み、実際に動くツールを作りながら試行錯誤を重ねてきました。</p>
+        <ul class="good">
+          <li><span><b>Googleツールの自動化</b>（GAS・スプレッドシート・Gmail）</span></li>
+          <li><span><b>AIを安全に組み込む設計</b>（誤った回答を送らない仕組み）</span></li>
+          <li><span><b>使いやすい画面づくり</b>（Illustrator・Canvaのデザイン経験）</span></li>
+        </ul>
+        <div class="hours">
+          <span><b>対応時間</b>平日 19〜22時 ／ 土日祝 9〜22時</span>
+          <span><b>返信</b>24時間以内</span>
+        </div>
+        <div class="skills"><span>GAS</span><span>Python</span><span>Next.js</span><span>LINE API</span><span>Claude / OpenAI API</span><span>Dify</span></div>
+        <a href="https://github.com/moedaichi0629-ai" target="_blank" rel="noopener" class="btn btn-ghost">GitHubを見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= CONTACT ================= -->
-<section class="contact" id="contact">
+<section class="contact alt" id="contact">
   <div class="wrap">
     <div class="cta rv">
-      <div style="position:relative">
-        <img class="cta-moe" src="images/moe.webp" alt="" width="112" height="112" loading="lazy">
-        <div class="eyebrow">Contact</div>
+      <img class="cta-moe" src="images/moe.webp" alt="" width="150" height="150" loading="lazy">
+      <div>
         <h2>まずは、気軽に<br>話してみませんか？</h2>
-        <p>「この作業、自動化できる？」という段階でも大歓迎です。今の作業内容を伺い、できること・進め方・お見積りをご提案します。</p>
+        <p>「この作業、自動化できる？」からで大丈夫です。</p>
       </div>
       <div class="cta-actions">
-        <a href="https://coconala.com/users/6188345" target="_blank" rel="noopener" class="btn btn-light">ココナラで無料見積り相談<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-        <small>お支払いはココナラ経由で安心。ご依頼はこちらがおすすめです。</small>
-        <a href="mailto:moedesign.1110@gmail.com?subject=%E3%81%94%E7%9B%B8%E8%AB%87" class="btn btn-line">メールで相談する<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <small>ココナラ以外でのご依頼・法人の方はメールで。24時間以内に返信します。</small>
+        <a href="https://coconala.com/users/6188345" target="_blank" rel="noopener" class="btn btn-light">ココナラで無料相談<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <a href="mailto:moedesign.1110@gmail.com?subject=%E3%81%94%E7%9B%B8%E8%AB%87" class="btn btn-line">メールで相談<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <small>24時間以内に返信します</small>
       </div>
     </div>
   </div>
@@ -941,9 +594,15 @@ footer a:hover{color:var(--ink)}
 
 <script>
 (() => {
-  // header border on scroll
   const header = document.getElementById('header');
-  const onScroll = () => header.classList.toggle('scrolled', scrollY > 8);
+  const sticky = document.getElementById('stickyCta');
+  const hero = document.querySelector('.hero'), contact = document.getElementById('contact');
+  const onScroll = () => {
+    header.classList.toggle('scrolled', scrollY > 8);
+    const past = hero.getBoundingClientRect().bottom < 0;
+    const near = contact.getBoundingClientRect().top < innerHeight;
+    sticky.classList.toggle('show', past && !near);
+  };
   addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
   // mobile menu
@@ -969,45 +628,7 @@ footer a:hover{color:var(--ink)}
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   }), {rootMargin:'0px 0px -8% 0px'});
-  document.querySelectorAll('.rv').forEach((el, i) => {
-    el.style.transitionDelay = (el.closest('.problems,.faq,.steps,.strengths,.services,.values') ? (i % 5) * 70 : 0) + 'ms';
-    io.observe(el);
-  });
-
-  // works filter
-  const filters = document.querySelectorAll('.filter');
-  const works = document.querySelectorAll('.work');
-  filters.forEach(btn => btn.addEventListener('click', () => {
-    filters.forEach(b => b.setAttribute('aria-pressed', b === btn));
-    const f = btn.dataset.f;
-    works.forEach(w => {
-      const show = f === 'all' || w.dataset.cat.split(' ').includes(f);
-      w.classList.toggle('hidden', !show);
-      if (show) w.classList.add('in');
-    });
-  }));
-
-  // works details: open on desktop
-  const wide = matchMedia('(min-width: 901px)');
-  const syncMore = () => document.querySelectorAll('.more').forEach(d => { if (wide.matches) d.open = true; });
-  syncMore(); wide.addEventListener('change', syncMore);
-
-  // sticky CTA (mobile): show after hero, hide near contact
-  const sticky = document.getElementById('stickyCta');
-  const hero = document.querySelector('.hero'), contact = document.getElementById('contact');
-  const syncSticky = () => {
-    const past = hero.getBoundingClientRect().bottom < 0;
-    const near = contact.getBoundingClientRect().top < innerHeight;
-    sticky.classList.toggle('show', past && !near);
-  };
-  addEventListener('scroll', syncSticky, {passive:true}); syncSticky();
-
-  // hero pipeline highlight
-  const nodes = document.querySelectorAll('.node');
-  let s = 0;
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    setInterval(() => { nodes.forEach((n, i) => n.classList.toggle('active', i === s)); s = (s + 1) % nodes.length; }, 1200);
-  } else { nodes[1].classList.add('active'); }
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
 })();
 </script>
 </body>
