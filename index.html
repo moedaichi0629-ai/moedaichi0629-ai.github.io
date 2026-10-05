@@ -131,6 +131,7 @@ section{padding:112px 0}
 .hero-meta a:hover,.hero-meta a:hover span{color:var(--accent)}
 .hero-meta strong{font-family:var(--font-display);font-size:32px;font-weight:900;line-height:1}
 .hero-meta span{font-size:12px;color:var(--ink-3);margin-top:8px}
+.hero-meta strong small{font-size:.5em;margin-left:2px;font-weight:700}
 
 /* pipeline visual */
 .pipe{background:var(--surface);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:22px;position:relative}
@@ -191,8 +192,8 @@ section{padding:112px 0}
 .work h3{font-size:26px;font-weight:900}
 .work .catch{color:var(--ink-2);font-size:15px;margin-top:8px}
 .psr{margin:24px 0;display:grid;gap:0;border-top:1px solid var(--line)}
-.psr div{display:grid;grid-template-columns:72px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.75}
-.psr dt{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--ink-3);padding-top:3px}
+.psr div{display:grid;grid-template-columns:56px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.75}
+.psr dt{font-size:12px;font-weight:700;color:var(--ink-3);padding-top:2px}
 .psr dd{margin:0;color:var(--ink)}
 .stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:26px}
 .stack span{font-family:var(--font-mono);font-size:11.5px;padding:4px 10px;border:1px solid var(--line);border-radius:6px;color:var(--ink-2);background:var(--surface)}
@@ -207,7 +208,11 @@ section{padding:112px 0}
 @media (max-width:900px){
   .work{grid-template-columns:1fr}
   .work:nth-child(even) .work-visual{order:0}
-  .work-visual{min-height:300px;padding:44px 20px 28px}
+  .work-visual{min-height:0;padding:44px 16px 20px}
+  .work-visual .shot img{height:200px}
+  .work-visual .float{display:none}
+  .work-visual .mock,.work-visual .phone{max-height:260px;overflow:hidden}
+  .work-body .catch{margin-top:4px}
   .work-body{padding:28px 22px}
   .psr div{grid-template-columns:1fr;gap:2px}
 }
@@ -393,7 +398,37 @@ section{padding:112px 0}
 .cta small{font-size:12.5px;opacity:.8;margin:-4px 0 8px;line-height:1.6}
 @media (max-width:860px){.cta{grid-template-columns:1fr;padding:48px 24px;border-radius:24px}}
 
-footer{padding:32px 0;border-top:1px solid var(--line);background:var(--bg-2)}
+footer{padding:40px 0 32px;border-top:1px solid var(--line);background:var(--bg-2)}
+.foot-brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--ink)}
+.foot-brand img{border-radius:8px;border:1px solid var(--line);background:#fff}
+.foot-links{display:flex;flex-wrap:wrap;gap:6px 20px}
+footer small{width:100%;font-size:12px}
+.more summary{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;font-size:14px;font-weight:700;color:var(--accent);cursor:pointer;list-style:none}
+.more summary::-webkit-details-marker{display:none}
+.more summary::after{content:"＋";font-size:13px}
+.more[open] summary::after{content:"−"}
+@media (min-width:901px){.more summary{display:none}}
+.more:not([open]) + .stack{margin-top:16px}
+.mid-cta{margin-top:40px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:28px 32px;border-radius:22px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+.mid-cta b{display:block;font-family:var(--font-display);font-size:20px;font-weight:900;margin-bottom:4px}
+.mid-cta span{font-size:14px;color:var(--ink-2)}
+@media (max-width:760px){.mid-cta{flex-direction:column;align-items:flex-start;padding:24px 22px}}
+.faq{display:grid;gap:12px;max-width:860px}
+.faq-item{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:0 22px}
+.faq-item summary{display:flex;align-items:center;gap:14px;padding:18px 0;font-weight:700;font-size:15.5px;cursor:pointer;list-style:none}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"＋";margin-left:auto;color:var(--accent);font-weight:700}
+.faq-item[open] summary::after{content:"−"}
+.fq{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);font-family:var(--font-mono);font-size:13px}
+.faq-item p{padding:0 0 20px 42px;font-size:14.5px;color:var(--ink-2)}
+.cta-moe{width:112px;height:112px;border-radius:28px;background:#fff;margin-bottom:20px;box-shadow:0 10px 30px -10px rgba(0,0,0,.35)}
+.sticky-cta{display:none}
+@media (max-width:760px){
+  .sticky-cta{display:flex;position:fixed;left:16px;right:16px;bottom:16px;z-index:60;align-items:center;justify-content:center;gap:10px;padding:15px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:700;text-decoration:none;box-shadow:0 12px 30px -8px rgba(30,60,130,.5);transform:translateY(140%);transition:transform .3s}
+  .sticky-cta svg{width:16px;height:16px}
+  .sticky-cta.show{transform:none}
+  footer{padding-bottom:96px}
+}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--ink-3)}
 footer a{text-decoration:none}
 footer a:hover{color:var(--ink)}
@@ -415,7 +450,6 @@ footer a:hover{color:var(--ink)}
     <div class="head-right">
       <nav class="nav" id="nav" aria-label="メイン">
         <a href="#works">制作実績</a>
-        <a href="#capabilities">できること</a>
         <a href="#services">サービス</a>
         <a href="#flow">制作の流れ</a>
         <a href="#profile">プロフィール</a>
@@ -437,21 +471,21 @@ footer a:hover{color:var(--ink)}
 <section class="hero">
   <div class="wrap">
     <div>
-      <div class="status rv"><span class="dot"></span>ご相談受付中 — 個人・小規模事業者の方も歓迎</div>
-      <h1 class="rv">日常や業務の<br><span class="hl">「面倒」</span>を、<br><span class="ai">AI</span>でシンプルに。</h1>
-      <p class="hero-lead rv">LINE・Googleツール・生成AIをつなぎ、毎日の手作業を減らす仕組みをつくります。業務効率化ツールからWebアプリ、ホームページまで、企画・設計・開発・公開を一人で一貫して担当します。</p>
-      <div class="hero-ctas rv">
+      <div class="status"><span class="dot"></span>ご相談受付中・初めての方も歓迎</div>
+      <h1>日常や業務の<br><span class="hl">「面倒」</span>を、<br><span class="ai">AI</span>でシンプルに。</h1>
+      <p class="hero-lead">LINE・Googleツール・生成AIをつなぎ、毎日の手作業を減らす仕組みをつくります。業務効率化ツールからLINE Bot・Webアプリまで、企画・設計・開発・公開を一人で一貫して担当します。</p>
+      <div class="hero-ctas">
         <a href="#works" class="btn btn-primary">制作実績を見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a href="#contact" class="btn btn-ghost">無料で相談する</a>
       </div>
-      <div class="hero-meta rv">
-        <a href="#works"><strong>6</strong><span>掲載作品 →</span></a>
-        <a href="https://github.com/moedaichi0629-ai?tab=repositories" target="_blank" rel="noopener"><strong>17</strong><span>GitHub公開作品 ↗</span></a>
-        <a href="https://github.com/moedaichi0629-ai?tab=repositories" target="_blank" rel="noopener"><strong>10</strong><span>Webで公開中のアプリ ↗</span></a>
+      <div class="hero-meta">
+        <a href="#works"><strong>6</strong><span>掲載作品</span></a>
+        <a href="#services"><strong>3,000<small>円〜</small></strong><span>ココナラで出品中</span></a>
+        <a href="#profile"><strong>24<small>h</small></strong><span>以内に返信</span></a>
       </div>
     </div>
 
-    <div class="pipe rv" aria-hidden="true">
+    <div class="pipe" aria-hidden="true">
       <div class="pipe-bar"><i></i><i></i><i></i><span>automation.flow</span></div>
       <div class="node" data-step="0">
         <div class="ico" style="background:#06C755">LINE</div>
@@ -492,7 +526,7 @@ footer a:hover{color:var(--ink)}
     <div class="problems">
       <div class="prob rv"><span class="q">Q.01</span><p>毎日の転記や集計を、そろそろ自動化したい</p><span class="a">→ GAS・Sheets連携で自動化</span></div>
       <div class="prob rv"><span class="q">Q.02</span><p>LINEの問い合わせ対応に時間を取られている</p><span class="a">→ LINE Bot＋AIで一次対応</span></div>
-      <div class="prob rv"><span class="q">Q.03</span><p>ホームページが欲しいけど、何から始めれば…</p><span class="a">→ AIでたたき台から作成</span></div>
+      <div class="prob rv"><span class="q">Q.03</span><p>予約のたびに、カレンダー登録と確認メールを手作業で送っている</p><span class="a">→ フォームから全部自動化</span></div>
       <div class="prob rv"><span class="q">Q.04</span><p>カレンダーやメールをバラバラに使っている</p><span class="a">→ Googleサービスを連携</span></div>
       <div class="prob rv"><span class="q">Q.05</span><p>AIを使ってみたいが、業務への活かし方が分からない</p><span class="a">→ 小さく試せる形で提案</span></div>
     </div>
@@ -519,36 +553,9 @@ footer a:hover{color:var(--ink)}
     <div class="works" id="worksList">
 
       <!-- 01 -->
-      <article class="work rv" data-cat="ai line web">
-        <div class="work-visual">
-          <span class="num">01 / 06</span>
-          <a class="shot" href="images/works/line-bot.webp" target="_blank" rel="noopener" aria-label="スクリーンショットを拡大">
-            <div class="mock-bar"><i></i><i></i><i></i><span class="url">line-reservation-bot-two.vercel.app/admin</span></div>
-            <img src="images/works/line-bot.webp" alt="LINE問い合わせAI Botの管理画面（FAQ管理・会話ログ・お知らせ配信のメニュー）" width="960" height="772" loading="lazy">
-          </a>
-          <div class="float" style="right:22px;top:20px">FAQに根拠なし → <b>スタッフへ通知</b></div>
-        </div>
-        <div class="work-body">
-          <div class="work-cat"><span>生成AI</span><span>LINE</span><span>Webアプリ</span></div>
-          <h3>LINE問い合わせAI Bot</h3>
-          <p class="catch">よくある質問はAIが即答、迷う質問は人へ。</p>
-          <dl class="psr">
-            <div><dt>FOR</dt><dd>個人経営の美容室など、LINEで問い合わせを受ける店舗</dd></div>
-            <div><dt>PROBLEM</dt><dd>「営業時間は？」「駐車場は？」と繰り返し届く質問への対応と、答えられない質問のスタッフへの引き継ぎ</dd></div>
-            <div><dt>SOLUTION</dt><dd>オーナーが登録したFAQをもとにClaudeが自動回答。根拠がない・確信度が低い質問はAIの回答を送らずオーナーへ通知。FAQ編集・会話ログ・お知らせ配信はスマホの管理画面から。</dd></div>
-            <div class="pt"><dt>POINT</dt><dd>回答の根拠となるFAQを検証し、根拠がなければAIの回答を送らない設計に。Webhook署名検証と、二重処理・二重配信の防止も実装。</dd></div>
-          </dl>
-          <div class="stack"><span>Next.js</span><span>TypeScript</span><span>Claude API</span><span>LINE Messaging API</span><span>Supabase</span></div>
-          <div class="links">
-            <a class="demo" href="https://line-reservation-bot-two.vercel.app/" target="_blank" rel="noopener">紹介ページを見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-            <a class="gh" href="https://github.com/moedaichi0629-ai/line-reservation-bot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
-          </div>
-        </div>
-      </article>
-      <!-- 02 -->
       <article class="work rv" data-cat="google gas">
         <div class="work-visual">
-          <span class="num">02 / 06</span>
+          <span class="num">01 / 06</span>
           <span class="img-note">※画面はイメージです</span>
           <div class="mock">
             <div class="mock-bar"><i></i><i></i><i></i><span class="url">予約回答 – Google スプレッドシート</span></div>
@@ -569,16 +576,49 @@ footer a:hover{color:var(--ink)}
           <div class="work-cat"><span>Google連携</span><span>GAS</span></div>
           <h3>Google予約受付の自動化</h3>
           <p class="catch">フォームに予約が入ったら、あとはおまかせ。</p>
+          <details class="more">
+            <summary>詳しく見る</summary>
           <dl class="psr">
-            <div><dt>FOR</dt><dd>Googleフォームでオンライン相談などの予約を受け付ける小規模事業者</dd></div>
-            <div><dt>PROBLEM</dt><dd>予約のたびに、カレンダーへの予定登録・確認メールの送信・処理状況の記録を手作業で行う手間</dd></div>
-            <div><dt>SOLUTION</dt><dd>フォーム回答をもとに、GASがカレンダーへの予定登録と予約完了メールの送信を自動実行。処理結果やエラーをシートに記録し、選択した行だけ再実行できる。</dd></div>
-            <div class="pt"><dt>POINT</dt><dd>CalendarのイベントIDを保存し、同じ回答行を再実行しても予定が二重に作成されない仕組みに。</dd></div>
+            <div><dt>対象</dt><dd>Googleフォームでオンライン相談などの予約を受け付ける小規模事業者</dd></div>
+            <div><dt>お悩み</dt><dd>予約のたびに、カレンダーへの予定登録・確認メールの送信・処理状況の記録を手作業で行う手間</dd></div>
+            <div><dt>解決</dt><dd>フォーム回答をもとに、GASがカレンダーへの予定登録と予約完了メールの送信を自動実行。処理結果やエラーをシートに記録し、選択した行だけ再実行できる。</dd></div>
+            <div class="pt"><dt>工夫</dt><dd>CalendarのイベントIDを保存し、同じ回答行を再実行しても予定が二重に作成されない仕組みに。</dd></div>
           </dl>
+          </details>
           <div class="stack"><span>Google Apps Script</span><span>Google Forms</span><span>Google Sheets</span><span>Google Calendar</span><span>Gmail</span></div>
           <div class="links">
             <span class="soon">Googleアカウント上で動作</span>
             <a class="gh" href="https://github.com/moedaichi0629-ai/google-booking-automation" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+          </div>
+        </div>
+      </article>
+      <!-- 02 -->
+      <article class="work rv" data-cat="ai line web">
+        <div class="work-visual">
+          <span class="num">02 / 06</span>
+          <a class="shot" href="images/works/line-bot.webp" target="_blank" rel="noopener" aria-label="スクリーンショットを拡大">
+            <div class="mock-bar"><i></i><i></i><i></i><span class="url">line-reservation-bot-two.vercel.app/admin</span></div>
+            <img src="images/works/line-bot.webp" alt="LINE問い合わせAI Botの管理画面（FAQ管理・会話ログ・お知らせ配信のメニュー）" width="960" height="772" loading="lazy">
+          </a>
+          <div class="float" style="right:22px;top:20px">FAQに根拠なし → <b>スタッフへ通知</b></div>
+        </div>
+        <div class="work-body">
+          <div class="work-cat"><span>生成AI</span><span>LINE</span><span>Webアプリ</span></div>
+          <h3>LINE問い合わせAI Bot</h3>
+          <p class="catch">よくある質問はAIが即答、迷う質問は人へ。</p>
+          <details class="more">
+            <summary>詳しく見る</summary>
+          <dl class="psr">
+            <div><dt>対象</dt><dd>個人経営の美容室など、LINEで問い合わせを受ける店舗</dd></div>
+            <div><dt>お悩み</dt><dd>「営業時間は？」「駐車場は？」と繰り返し届く質問への対応と、答えられない質問のスタッフへの引き継ぎ</dd></div>
+            <div><dt>解決</dt><dd>オーナーが登録したFAQをもとにClaudeが自動回答。根拠がない・確信度が低い質問はAIの回答を送らずオーナーへ通知。FAQ編集・会話ログ・お知らせ配信はスマホの管理画面から。</dd></div>
+            <div class="pt"><dt>工夫</dt><dd>回答の根拠となるFAQを検証し、根拠がなければAIの回答を送らない設計に。Webhook署名検証と、二重処理・二重配信の防止も実装。</dd></div>
+          </dl>
+          </details>
+          <div class="stack"><span>Next.js</span><span>TypeScript</span><span>Claude API</span><span>LINE Messaging API</span><span>Supabase</span></div>
+          <div class="links">
+            <a class="demo" href="https://line-reservation-bot-two.vercel.app/" target="_blank" rel="noopener">紹介ページを見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+            <a class="gh" href="https://github.com/moedaichi0629-ai/line-reservation-bot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
           </div>
         </div>
       </article>
@@ -596,12 +636,15 @@ footer a:hover{color:var(--ink)}
           <div class="work-cat"><span>生成AI</span><span>Google連携</span><span>GAS</span></div>
           <h3>GAS × AI ブログ記事下書き生成</h3>
           <p class="catch">キーワードを入れるだけで、記事の下書きがシートに並ぶ。</p>
+          <details class="more">
+            <summary>詳しく見る</summary>
           <dl class="psr">
-            <div><dt>FOR</dt><dd>オウンドメディアの記事制作担当者</dd></div>
-            <div><dt>PROBLEM</dt><dd>キーワードごとに記事の下書きを作り、制作状況を記録していく手間</dd></div>
-            <div><dt>SOLUTION</dt><dd>スプレッドシートのキーワードからClaude APIでタイトル・本文・メタディスクリプションを生成し、同じシートに書き出す。生成状況の管理と文字数チェック付きで、人が確認してから使う運用。</dd></div>
-            <div class="pt"><dt>POINT</dt><dd>生成結果は人が確認してから使う運用を前提に設計。APIキーはスクリプトプロパティで管理し、コードに書かない。</dd></div>
+            <div><dt>対象</dt><dd>オウンドメディアの記事制作担当者</dd></div>
+            <div><dt>お悩み</dt><dd>キーワードごとに記事の下書きを作り、制作状況を記録していく手間</dd></div>
+            <div><dt>解決</dt><dd>スプレッドシートのキーワードからClaude APIでタイトル・本文・メタディスクリプションを生成し、同じシートに書き出す。生成状況の管理と文字数チェック付きで、人が確認してから使う運用。</dd></div>
+            <div class="pt"><dt>工夫</dt><dd>生成結果は人が確認してから使う運用を前提に設計。APIキーはスクリプトプロパティで管理し、コードに書かない。</dd></div>
           </dl>
+          </details>
           <div class="stack"><span>Google Apps Script</span><span>Google Sheets</span><span>Claude API</span></div>
           <div class="links">
             <span class="soon">Googleアカウント上で動作</span>
@@ -623,12 +666,15 @@ footer a:hover{color:var(--ink)}
           <div class="work-cat"><span>Google連携</span><span>LINE</span><span>Webアプリ</span></div>
           <h3>Todo管理 × 期限LINE通知</h3>
           <p class="catch">期限が近づいたら、LINEで知らせてくれる。</p>
+          <details class="more">
+            <summary>詳しく見る</summary>
           <dl class="psr">
-            <div><dt>FOR</dt><dd>タスクをスプレッドシートでも記録・確認したい個人・小さなチーム</dd></div>
-            <div><dt>PROBLEM</dt><dd>タスク管理と期限確認が別々になり、確認の手間が増える・期限を忘れる</dd></div>
-            <div><dt>SOLUTION</dt><dd>Web画面で登録したタスクをGoogleスプレッドシートに保存し、期日が近い未完了タスクをLINEで通知。キーワード・期限・完了状態で絞り込みもできる。</dd></div>
-            <div class="pt"><dt>POINT</dt><dd>専用DBを使わずGoogle Sheetsを保存先にし、Web画面とスプレッドシートの両方から記録を確認できる構成に。</dd></div>
+            <div><dt>対象</dt><dd>タスクをスプレッドシートでも記録・確認したい個人・小さなチーム</dd></div>
+            <div><dt>お悩み</dt><dd>タスク管理と期限確認が別々になり、確認の手間が増える・期限を忘れる</dd></div>
+            <div><dt>解決</dt><dd>Web画面で登録したタスクをGoogleスプレッドシートに保存し、期日が近い未完了タスクをLINEで通知。キーワード・期限・完了状態で絞り込みもできる。</dd></div>
+            <div class="pt"><dt>工夫</dt><dd>専用DBを使わずGoogle Sheetsを保存先にし、Web画面とスプレッドシートの両方から記録を確認できる構成に。</dd></div>
           </dl>
+          </details>
           <div class="stack"><span>Python</span><span>Flask</span><span>Google Sheets API</span><span>LINE Messaging API</span><span>Render</span></div>
           <div class="links">
             <a class="demo" href="https://todo-app-1p8e.onrender.com/" target="_blank" rel="noopener">デモを見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
@@ -650,12 +696,15 @@ footer a:hover{color:var(--ink)}
           <div class="work-cat"><span>Google連携</span><span>Webアプリ</span></div>
           <h3>日程調整ツール</h3>
           <p class="catch">空き時間の抽出から、送る文章まで自動で。</p>
+          <details class="more">
+            <summary>詳しく見る</summary>
           <dl class="psr">
-            <div><dt>FOR</dt><dd>商談・面談の日程調整に時間を取られている個人事業主・営業担当</dd></div>
-            <div><dt>PROBLEM</dt><dd>「候補日を出すのに時間がかかる」「ダブルブッキングが心配」</dd></div>
-            <div><dt>SOLUTION</dt><dd>Googleカレンダーと連携して空き時間を自動抽出し、候補日とLINE・メール向けの案内文まで自動生成。</dd></div>
-            <div class="pt"><dt>POINT</dt><dd>候補日の抽出から案内文の作成・予定登録までを、一つの画面で完結できる流れに。</dd></div>
+            <div><dt>対象</dt><dd>商談・面談の日程調整に時間を取られている個人事業主・営業担当</dd></div>
+            <div><dt>お悩み</dt><dd>「候補日を出すのに時間がかかる」「ダブルブッキングが心配」</dd></div>
+            <div><dt>解決</dt><dd>Googleカレンダーと連携して空き時間を自動抽出し、候補日とLINE・メール向けの案内文まで自動生成。</dd></div>
+            <div class="pt"><dt>工夫</dt><dd>候補日の抽出から案内文の作成・予定登録までを、一つの画面で完結できる流れに。</dd></div>
           </dl>
+          </details>
           <div class="stack"><span>Python</span><span>Streamlit</span><span>Google Calendar API</span><span>OAuth 2.0</span></div>
           <div class="links">
             <a class="demo" href="https://schedule-adjustment-tool-eap349ikdfvjevnzg55qi7.streamlit.app/" target="_blank" rel="noopener">デモを見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
@@ -677,12 +726,15 @@ footer a:hover{color:var(--ink)}
           <div class="work-cat"><span>生成AI</span><span>LINE</span><span>Google連携</span></div>
           <h3>LINE × AI 記録自動化</h3>
           <p class="catch">写真を送るだけで、記録もレポートも自動に。</p>
+          <details class="more">
+            <summary>詳しく見る</summary>
           <dl class="psr">
-            <div><dt>FOR</dt><dd>日々のちょっとした記録をLINEで済ませたい方・店舗</dd></div>
-            <div><dt>PROBLEM</dt><dd>「記録が続かない」「スプレッドシートを開くのが面倒」</dd></div>
-            <div><dt>SOLUTION</dt><dd>LINEに写真を送るとAIが内容を解析し、Googleスプレッドシートへ自動記録。日次・週次のレポートも自動生成。</dd></div>
-            <div class="pt"><dt>POINT</dt><dd>画像入力・会話フロー・シート保存を組み合わせ、アプリを開かずLINEの中だけで記録が完結。</dd></div>
+            <div><dt>対象</dt><dd>日々のちょっとした記録をLINEで済ませたい方・店舗</dd></div>
+            <div><dt>お悩み</dt><dd>「記録が続かない」「スプレッドシートを開くのが面倒」</dd></div>
+            <div><dt>解決</dt><dd>LINEに写真を送るとAIが内容を解析し、Googleスプレッドシートへ自動記録。日次・週次のレポートも自動生成。</dd></div>
+            <div class="pt"><dt>工夫</dt><dd>画像入力・会話フロー・シート保存を組み合わせ、アプリを開かずLINEの中だけで記録が完結。</dd></div>
           </dl>
+          </details>
           <div class="stack"><span>Python</span><span>Flask</span><span>LINE Messaging API</span><span>OpenAI Vision</span><span>Google Sheets API</span></div>
           <div class="links">
             <span class="soon">LINE上で動作</span>
@@ -692,39 +744,11 @@ footer a:hover{color:var(--ink)}
       </article>
 
     </div>
+    <div class="mid-cta rv">
+      <div><b>この作品のような自動化、あなたの業務にも。</b><span>「うちの作業でもできる？」という段階から、無料でお見積りします。</span></div>
+      <a href="https://coconala.com/users/6188345" target="_blank" rel="noopener" class="btn btn-primary">ココナラで相談する<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    </div>
     <p class="note">※ 掲載作品は個人開発・模擬案件の制作例です。その他の作品（文章添削AI・歌舞伎予習AI・店舗情報管理ツールなど）は <a href="https://github.com/moedaichi0629-ai" target="_blank" rel="noopener">GitHub</a> で公開しています。</p>
-  </div>
-</section>
-
-<!-- ================= CAPABILITIES ================= -->
-<section id="capabilities">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <div><div class="eyebrow">Capabilities</div><h2 class="sec-title">こんな仕組みも、つくれます。</h2></div>
-      <p class="sec-lead">実績の技術を組み合わせれば、業務に合わせた自動化が可能です。よくご相談いただく例をご紹介します。</p>
-    </div>
-    <div class="caps">
-      <div class="cap rv">
-        <div class="flow"><span>Sheets</span><em>→</em><span>GAS</span><em>→</em><span>Report</span></div>
-        <h3>売上集計の自動化</h3>
-        <p>日々の売上データをスプレッドシートで自動集計・分析。転記ミスをなくし、意思決定のスピードを上げます。</p>
-      </div>
-      <div class="cap rv">
-        <div class="flow"><span>メモ・URL</span><em>→</em><span>AI</span><em>→</em><span>X / Instagram</span></div>
-        <h3>SNS投稿文の自動生成</h3>
-        <p>メモやURLをもとに、各SNSに合わせた投稿文をAIが作成。投稿のネタ切れや作成時間を減らします。</p>
-      </div>
-      <div class="cap rv">
-        <div class="flow"><span>社内資料</span><em>→</em><span>Dify</span><em>→</em><span>LINE</span></div>
-        <h3>社内向け問い合わせBot</h3>
-        <p>マニュアルや社内資料をもとに、LINEやチャットからの質問にAIが回答。同じ質問への対応を減らします。</p>
-      </div>
-      <div class="cap rv">
-        <div class="flow"><span>顧客情報</span><em>→</em><span>AI</span><em>→</em><span>下書き</span></div>
-        <h3>AI営業メール</h3>
-        <p>相手や目的に合わせた丁寧なメールの下書きをAIが作成。作成時間を減らし、顧客との接点を増やします。</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -752,7 +776,7 @@ footer a:hover{color:var(--ink)}
     </div>
     <div class="services">
       <div class="svc rv">
-        <span class="n">01 — Spreadsheet</span>
+        <span class="n">SERVICE 01</span>
         <h3>スプレッドシート作業の自動化</h3>
         <p>毎日の転記・集計・コピペ作業を、GASで自動化します。売上や件数の集計、入力チェックもおまかせください。</p>
         <ul><li>データの自動転記・自動集計</li><li>入力内容・重複データのチェック</li><li>ボタン実行・毎日/毎週の定期処理</li></ul>
@@ -763,7 +787,7 @@ footer a:hover{color:var(--ink)}
       </div>
 
       <div class="svc rv">
-        <span class="n">02 — Integration</span>
+        <span class="n">SERVICE 02</span>
         <h3>Googleサービス連携の自動化</h3>
         <p>フォーム・スプレッドシート・カレンダー・Gmailをつなぎ、複数サービスへの入力や登録をまとめて自動化します。</p>
         <ul><li>フォーム回答 → シートへ自動記録</li><li>カレンダー登録・確認メールの自動送信</li><li>条件分岐・外部サービスとのAPI連携</li></ul>
@@ -774,7 +798,7 @@ footer a:hover{color:var(--ink)}
       </div>
 
       <div class="svc rv">
-        <span class="n">03 — Notification</span>
+        <span class="n">SERVICE 03</span>
         <h3>メール・通知の自動化</h3>
         <p>毎回同じ内容のメールや期限前のリマインドを、スプレッドシートの情報から自動で送信します。</p>
         <ul><li>期限前のリマインド通知</li><li>予約・申込後の確認メール</li><li>送信済み管理・定期メール</li></ul>
@@ -786,8 +810,44 @@ footer a:hover{color:var(--ink)}
 
     </div>
     <div class="svc-more rv">
-      <div><b>LINE Bot・AIツール・Webアプリ開発</b><span>実績にあるようなLINE Bot、生成AIを使ったツール、Webアプリの制作や既存ツールの改善は、内容を伺って個別にお見積りします。</span></div>
+      <div><b>LINE Bot・AIツール・Webアプリ開発</b><span>LINEの問い合わせBot、AIによる文章・メールの下書き作成、SNS投稿文の生成、社内向けQ&amp;A Botなどの制作や、既存ツールの改善は、内容を伺って個別にお見積りします。</span></div>
       <a href="#contact" class="btn btn-ghost">相談する<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><div class="eyebrow">FAQ</div><h2 class="sec-title">よくあるご質問</h2></div>
+      <p class="sec-lead">ここにないことも、お気軽にご相談ください。</p>
+    </div>
+    <div class="faq">
+      <details class="faq-item rv">
+        <summary><span class="fq">Q</span>相談だけでも大丈夫ですか？</summary>
+        <p>大丈夫です。ご相談・お見積りは無料です。今の作業内容を教えていただければ、自動化できるかどうかと、進め方・費用の目安をお伝えします。</p>
+      </details>
+      <details class="faq-item rv">
+        <summary><span class="fq">Q</span>GASやプログラミングの知識がなくても依頼できますか？</summary>
+        <p>はい、知識は必要ありません。専門用語を使わずにご説明し、納品時には操作方法もご案内するので、ご自身で使い続けられます。</p>
+      </details>
+      <details class="faq-item rv">
+        <summary><span class="fq">Q</span>今使っているスプレッドシートを自動化できますか？</summary>
+        <p>できます。内容を確認したうえでお見積りします。個人情報・機密情報を削除したサンプルを共有いただけると、より正確に確認できます。</p>
+      </details>
+      <details class="faq-item rv">
+        <summary><span class="fq">Q</span>3,000円でどこまで対応してもらえますか？</summary>
+        <p>簡単な自動化1件（スプレッドシート1ファイル・GASによる自動処理・動作確認・操作説明）が基本料金に含まれます。処理の追加や他サービスとの連携は、事前にお見積りします。</p>
+      </details>
+      <details class="faq-item rv">
+        <summary><span class="fq">Q</span>依頼するときに何を準備すればいいですか？</summary>
+        <p>「今どんな作業をしているか」「どの作業を自動化したいか」「希望の動き」「希望納期」を、分かる範囲で教えてください。うまく言葉にできなくても、ヒアリングで一緒に整理します。</p>
+      </details>
+      <details class="faq-item rv">
+        <summary><span class="fq">Q</span>納品後に修正してもらえますか？</summary>
+        <p>納品前に実際に動かして確認していただき、修正したうえで納品します。納品後に気になる点が出てきた場合も、お気軽にご相談ください。</p>
+      </details>
     </div>
   </div>
 </section>
@@ -848,6 +908,7 @@ footer a:hover{color:var(--ink)}
   <div class="wrap">
     <div class="cta rv">
       <div style="position:relative">
+        <img class="cta-moe" src="images/moe.webp" alt="" width="112" height="112" loading="lazy">
         <div class="eyebrow">Contact</div>
         <h2>まずは、気軽に<br>話してみませんか？</h2>
         <p>「この作業、自動化できる？」という段階でも大歓迎です。今の作業内容を伺い、できること・進め方・お見積りをご提案します。</p>
@@ -866,10 +927,17 @@ footer a:hover{color:var(--ink)}
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Moe — AI × Automation × Efficiency</span>
-    <a href="#top">ページトップへ ↑</a>
+    <div class="foot-brand"><img src="images/logo.png" alt="" width="32" height="32"><span>もえ｜AI開発・業務自動化</span></div>
+    <nav class="foot-links" aria-label="外部リンク">
+      <a href="https://coconala.com/users/6188345" target="_blank" rel="noopener">ココナラ</a>
+      <a href="https://github.com/moedaichi0629-ai" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:moedesign.1110@gmail.com">メール</a>
+      <a href="#top">ページトップへ ↑</a>
+    </nav>
+    <small>© 2026 Moe — AI × Automation × Efficiency</small>
   </div>
 </footer>
+<a href="#contact" class="sticky-cta" id="stickyCta">無料で相談する<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 
 <script>
 (() => {
@@ -902,7 +970,7 @@ footer a:hover{color:var(--ink)}
     if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   }), {rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.rv').forEach((el, i) => {
-    el.style.transitionDelay = (el.closest('.problems,.caps,.steps,.strengths,.services,.values') ? (i % 5) * 70 : 0) + 'ms';
+    el.style.transitionDelay = (el.closest('.problems,.faq,.steps,.strengths,.services,.values') ? (i % 5) * 70 : 0) + 'ms';
     io.observe(el);
   });
 
@@ -918,6 +986,21 @@ footer a:hover{color:var(--ink)}
       if (show) w.classList.add('in');
     });
   }));
+
+  // works details: open on desktop
+  const wide = matchMedia('(min-width: 901px)');
+  const syncMore = () => document.querySelectorAll('.more').forEach(d => { if (wide.matches) d.open = true; });
+  syncMore(); wide.addEventListener('change', syncMore);
+
+  // sticky CTA (mobile): show after hero, hide near contact
+  const sticky = document.getElementById('stickyCta');
+  const hero = document.querySelector('.hero'), contact = document.getElementById('contact');
+  const syncSticky = () => {
+    const past = hero.getBoundingClientRect().bottom < 0;
+    const near = contact.getBoundingClientRect().top < innerHeight;
+    sticky.classList.toggle('show', past && !near);
+  };
+  addEventListener('scroll', syncSticky, {passive:true}); syncSticky();
 
   // hero pipeline highlight
   const nodes = document.querySelectorAll('.node');
