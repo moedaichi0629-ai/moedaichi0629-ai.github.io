@@ -321,6 +321,17 @@ section{padding:112px 0}
 .svc p{font-size:14px;color:var(--ink-2)}
 .svc ul{list-style:none;margin:6px 0 0;padding:14px 0 0;border-top:1px dashed var(--line);display:grid;gap:6px}
 .svc li{font-size:13.5px;display:flex;gap:8px;align-items:baseline}
+.svc-foot{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.price{display:flex;align-items:baseline;gap:6px}
+.price strong{font-family:var(--font-display);font-size:28px;font-weight:900;line-height:1}
+.price span{font-size:12.5px;color:var(--ink-3)}
+.svc-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 16px;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:700;font-size:14px;text-decoration:none;transition:background .2s,color .2s}
+.svc-link svg{width:15px;height:15px}
+.svc-link:hover{background:var(--accent);color:var(--accent-ink)}
+.svc-more{margin-top:16px;border:1px dashed var(--line);border-radius:22px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--bg-2)}
+.svc-more b{display:block;font-size:16px;margin-bottom:4px}
+.svc-more span{font-size:14px;color:var(--ink-2)}
+@media (max-width:760px){.svc-more{flex-direction:column;align-items:flex-start}}
 .svc li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);flex:none;transform:translateY(-2px)}
 @media (max-width:960px){.services{grid-template-columns:1fr}}
 
@@ -350,12 +361,18 @@ section{padding:112px 0}
 .card .role{font-family:var(--font-mono);font-size:12px;color:var(--ink-3)}
 .card p{font-size:14.5px;color:var(--ink-2);margin-top:16px}
 .card .btn{margin-top:22px;width:100%;justify-content:center}
+.hours{margin:20px 0 0;display:grid;gap:10px;padding:16px;border-radius:14px;background:var(--bg-2)}
+.hours div{display:grid;grid-template-columns:64px 1fr;gap:10px;font-size:13.5px;line-height:1.6}
+.hours dt{font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--ink-3);padding-top:2px}
+.hours dd{margin:0;font-weight:700}
+.hours small{display:block;font-weight:400;font-size:12px;color:var(--ink-3)}
 .stack-grid{display:grid;gap:0;border-top:1px solid var(--line)}
 .srow{display:grid;grid-template-columns:140px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--line);align-items:center}
 .srow dt{font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
 .srow dd{margin:0;display:flex;flex-wrap:wrap;gap:8px}
 .srow dd span{font-size:14px;font-weight:500;padding:6px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
-.values{margin-top:36px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.values-title{margin:44px 0 16px;font-size:20px;font-weight:900}
+.values{margin-top:0;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .value{padding:20px 22px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
 .value b{display:block;font-size:15px;margin-bottom:4px}
 .value span{font-size:13.5px;color:var(--ink-2)}
@@ -373,7 +390,7 @@ section{padding:112px 0}
 .cta .btn-light{background:var(--accent-ink);color:var(--accent);justify-content:space-between}
 .cta .btn-line{border-color:color-mix(in srgb,var(--accent-ink) 40%,transparent);color:var(--accent-ink);justify-content:space-between}
 .cta .btn-line:hover{border-color:var(--accent-ink)}
-.cta small{font-size:12.5px;opacity:.75;margin-top:4px}
+.cta small{font-size:12.5px;opacity:.8;margin:-4px 0 8px;line-height:1.6}
 @media (max-width:860px){.cta{grid-template-columns:1fr;padding:48px 24px;border-radius:24px}}
 
 footer{padding:32px 0;border-top:1px solid var(--line);background:var(--bg-2)}
@@ -720,7 +737,7 @@ footer a:hover{color:var(--ink)}
     </div>
     <div class="strengths">
       <div class="str rv"><span class="n">01</span><h3>丁寧なヒアリング</h3><p>今の作業の流れを一緒に整理し、本当に自動化すべきポイントを見つけます。「何を頼めばいいか分からない」段階からご相談ください。</p></div>
-      <div class="str rv"><span class="n">02</span><h3>触れる試作品で、早く確認</h3><p>説明資料だけでなく、実際に動く試作品をつくってから本制作へ。完成後の「思っていたのと違う」を防ぎます。</p></div>
+      <div class="str rv"><span class="n">02</span><h3>スピード感のある対応</h3><p>メッセージは3時間以内の返信を心がけています。小さく作って早くお見せし、触りながら調整するので、完成までの行き違いも少なくなります。</p></div>
       <div class="str rv"><span class="n">03</span><h3>専門用語を使わない説明</h3><p>技術に詳しくない方にも分かる言葉でお伝えします。納品後にご自身で運用できるよう、使い方まで丁寧にご案内します。</p></div>
     </div>
   </div>
@@ -730,28 +747,47 @@ footer a:hover{color:var(--ink)}
 <section id="services">
   <div class="wrap">
     <div class="sec-head rv">
-      <div><div class="eyebrow">Services</div><h2 class="sec-title">サービス</h2></div>
-      <p class="sec-lead">対応範囲はご相談内容を確認して決めます。AIを使う場合も、人による確認を含めた運用を前提にご提案します。</p>
+      <div><div class="eyebrow">Services</div><h2 class="sec-title">サービスと料金</h2></div>
+      <p class="sec-lead">ココナラで出品中のサービスです。内容を伺ってからお見積りするので、「自動化できるか分からない」段階でもお気軽にご相談ください。</p>
     </div>
     <div class="services">
       <div class="svc rv">
-        <span class="n">01 — Automation</span>
-        <h3>Googleツールの業務自動化</h3>
-        <p>スプレッドシートの転記・集計、Gmailの通知、カレンダーへの予定登録など、日々の手作業を減らす仕組みを制作します。</p>
-        <ul><li>GAS・Sheets APIでの自動集計</li><li>メール／カレンダー連携</li><li>定期レポートの自動作成</li></ul>
+        <span class="n">01 — Spreadsheet</span>
+        <h3>スプレッドシート作業の自動化</h3>
+        <p>毎日の転記・集計・コピペ作業を、GASで自動化します。売上や件数の集計、入力チェックもおまかせください。</p>
+        <ul><li>データの自動転記・自動集計</li><li>入力内容・重複データのチェック</li><li>ボタン実行・毎日/毎週の定期処理</li></ul>
+        <div class="svc-foot">
+          <div class="price"><strong>3,000円</strong><span>〜 / お届け目安 3日〜</span></div>
+          <a class="svc-link" href="https://coconala.com/services/4364817" target="_blank" rel="noopener">ココナラで詳しく見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
       </div>
+
       <div class="svc rv">
         <span class="n">02 — Integration</span>
-        <h3>LINE・AI・API連携</h3>
-        <p>LINEの問い合わせ対応やAIによる文章の下書きなど、複数のサービスをつなぐ仕組みを制作します。</p>
-        <ul><li>LINE Bot（予約・通知・記録）</li><li>生成AI（OpenAI／Claude／Dify）</li><li>Webアプリ・管理ツール開発</li></ul>
+        <h3>Googleサービス連携の自動化</h3>
+        <p>フォーム・スプレッドシート・カレンダー・Gmailをつなぎ、複数サービスへの入力や登録をまとめて自動化します。</p>
+        <ul><li>フォーム回答 → シートへ自動記録</li><li>カレンダー登録・確認メールの自動送信</li><li>条件分岐・外部サービスとのAPI連携</li></ul>
+        <div class="svc-foot">
+          <div class="price"><strong>5,000円</strong><span>〜 / お届け目安 3日〜</span></div>
+          <a class="svc-link" href="https://coconala.com/services/4410770" target="_blank" rel="noopener">ココナラで詳しく見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
       </div>
+
       <div class="svc rv">
-        <span class="n">03 — Consulting</span>
-        <h3>既存ツールの改善・ご相談</h3>
-        <p>今使っているスプレッドシートや業務ツールの困りごとを伺い、改善できる作業を整理します。</p>
-        <ul><li>業務フローの棚卸し</li><li>既存シート・GASの改修</li><li>ホームページ制作のご相談</li></ul>
+        <span class="n">03 — Notification</span>
+        <h3>メール・通知の自動化</h3>
+        <p>毎回同じ内容のメールや期限前のリマインドを、スプレッドシートの情報から自動で送信します。</p>
+        <ul><li>期限前のリマインド通知</li><li>予約・申込後の確認メール</li><li>送信済み管理・定期メール</li></ul>
+        <div class="svc-foot">
+          <div class="price"><strong>3,000円</strong><span>〜 / お届け目安 3日〜</span></div>
+          <a class="svc-link" href="https://coconala.com/services/4410691" target="_blank" rel="noopener">ココナラで詳しく見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
       </div>
+
+    </div>
+    <div class="svc-more rv">
+      <div><b>LINE Bot・AIツール・Webアプリ開発</b><span>実績にあるようなLINE Bot、生成AIを使ったツール、Webアプリの制作や既存ツールの改善は、内容を伺って個別にお見積りします。</span></div>
+      <a href="#contact" class="btn btn-ghost">相談する<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
 </section>
@@ -780,11 +816,15 @@ footer a:hover{color:var(--ink)}
       <img class="avatar" src="images/moe.webp" alt="もえのイラスト（ノートパソコンの前でコーヒーを持つ女性）" width="148" height="148" loading="lazy">
       <h3>もえ</h3>
       <span class="role">AI Developer / 業務自動化</span>
-      <p>AIやAPI連携を活用し、日常や業務の「面倒」を解決するツールを開発しています。業務効率化やWebアプリ開発を中心に、企画・設計・開発・公開まで一貫して対応。「使いやすく、長く使えるサービス」を大切に、日々学習と開発を続けています。</p>
+      <p>エンジニアスクールで実践的な課題に取り組み、実際に動くツールを作りながら試行錯誤を重ねてきました。GoogleツールやLINE、生成AIを組み合わせ、日常や業務の「面倒」を減らす仕組みを、企画から公開まで一人で手がけています。</p>
+      <dl class="hours">
+        <div><dt>対応時間</dt><dd>平日 19:00〜22:00<br>土日祝 9:00〜22:00</dd></div>
+        <div><dt>返信</dt><dd>3時間以内を心がけています<small>（対応時間内）</small></dd></div>
+      </dl>
       <a href="https://github.com/moedaichi0629-ai" target="_blank" rel="noopener" class="btn btn-ghost">GitHubを見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     </aside>
     <div>
-      <div class="rv"><div class="eyebrow">Tech Stack</div><h2 class="sec-title" style="margin-bottom:32px">技術スタック</h2></div>
+      <div class="rv"><div class="eyebrow">Skills</div><h2 class="sec-title" style="margin-bottom:32px">技術スタック</h2></div>
       <dl class="stack-grid rv">
         <div class="srow"><dt>AI</dt><dd><span>OpenAI API</span><span>Claude API</span><span>Dify</span><span>OpenAI Vision</span></dd></div>
         <div class="srow"><dt>API</dt><dd><span>LINE Messaging API</span><span>Google Sheets</span><span>Google Calendar</span><span>Google Places</span><span>OAuth 2.0</span></dd></div>
@@ -792,9 +832,12 @@ footer a:hover{color:var(--ink)}
         <div class="srow"><dt>Backend</dt><dd><span>Python</span><span>Flask</span><span>Streamlit</span><span>GAS</span></dd></div>
         <div class="srow"><dt>Deploy</dt><dd><span>GitHub</span><span>Vercel</span><span>Netlify</span><span>Render</span></dd></div>
       </dl>
+      <h3 class="values-title rv">得意なこと</h3>
       <div class="values">
-        <div class="value rv"><b>課題起点でつくる</b><span>技術ありきではなく、「誰の・何が面倒か」から設計します。</span></div>
-        <div class="value rv"><b>公開まで責任を持つ</b><span>デプロイ・動作確認まで一人で完結。公開URLで確認できます。</span></div>
+        <div class="value rv"><b>Googleツールの自動化</b><span>GAS・スプレッドシート・カレンダー・Gmailをつなぎ、今ある環境のまま手作業を減らします。</span></div>
+        <div class="value rv"><b>AIを「安全に」組み込む設計</b><span>根拠がない回答は送らない、人が確認してから使うなど、AIの誤りが事故にならない仕組みにします。</span></div>
+        <div class="value rv"><b>使いやすい画面づくり</b><span>Illustrator・Canvaでのデザイン経験を活かし、迷わず使える画面や資料に仕上げます。</span></div>
+        <div class="value rv"><b>公開・運用まで一人で完結</b><span>デプロイ・動作確認・操作説明まで対応。作品はすべて公開URLやGitHubで確認できます。</span></div>
       </div>
     </div>
   </div>
@@ -807,12 +850,13 @@ footer a:hover{color:var(--ink)}
       <div style="position:relative">
         <div class="eyebrow">Contact</div>
         <h2>まずは、気軽に<br>話してみませんか？</h2>
-        <p>「AIを活用したい」「ホームページを作りたい」「こんなこともできる？」という段階でも大歓迎です。内容を伺い、できること・進め方をご提案します。</p>
+        <p>「この作業、自動化できる？」という段階でも大歓迎です。今の作業内容を伺い、できること・進め方・お見積りをご提案します。</p>
       </div>
       <div class="cta-actions">
-        <a href="mailto:moedesign.1110@gmail.com?subject=%E3%81%94%E7%9B%B8%E8%AB%87" class="btn btn-light">メールで相談する<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a href="https://github.com/moedaichi0629-ai" target="_blank" rel="noopener" class="btn btn-line">GitHubを見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-        <small>ご相談・お見積りは無料です。</small>
+        <a href="https://coconala.com/users/6188345" target="_blank" rel="noopener" class="btn btn-light">ココナラで無料見積り相談<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <small>お支払いはココナラ経由で安心。ご依頼はこちらがおすすめです。</small>
+        <a href="mailto:moedesign.1110@gmail.com?subject=%E3%81%94%E7%9B%B8%E8%AB%87" class="btn btn-line">メールで相談する<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <small>ココナラ以外でのご依頼・法人の方はメールで。返信は3時間以内を心がけています。</small>
       </div>
     </div>
   </div>
