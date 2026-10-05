@@ -13,20 +13,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F5F3EE;
-  --bg-2:#ECE9E1;
+  --bg:#FFFFFF;
+  --bg-2:#F6F8FB;
   --surface:#FFFFFF;
-  --ink:#15171C;
-  --ink-2:#4A4E57;
-  --ink-3:#80848D;
-  --line:#DCD8CE;
-  --accent:#3247E6;
+  --ink:#14181F;
+  --ink-2:#5B6472;
+  --ink-3:#8C95A6;
+  --line:#E6E9EF;
+  --accent:#2E6BE6;
   --accent-ink:#FFFFFF;
-  --accent-soft:#E6E9FF;
-  --mark:#D9F56B;
+  --accent-soft:#EEF3FF;
+  --mark:#D3E2FF;
+  --deep:#0F172A;
+  --deep-ink:#E8EEF9;
+  --deep-accent:#8FB4FF;
   --green:#06C755;
   --radius:18px;
-  --shadow:0 1px 0 rgba(21,23,28,.04),0 12px 32px -12px rgba(21,23,28,.18);
+  --shadow:0 1px 0 rgba(20,24,31,.03),0 12px 32px -12px rgba(30,60,130,.18);
   --font-display:"Zen Kaku Gothic New",system-ui,sans-serif;
   --font-body:"Noto Sans JP",system-ui,sans-serif;
   --font-mono:"JetBrains Mono",ui-monospace,monospace;
@@ -34,14 +37,16 @@
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#0F1115;--bg-2:#161921;--surface:#1A1E27;--ink:#F1F0EC;--ink-2:#B5B8C0;--ink-3:#7D828D;
-    --line:#2A2F3A;--accent:#7C8CFF;--accent-ink:#0F1115;--accent-soft:#232A55;--mark:#B8DB3A;
+    --bg:#0B1120;--bg-2:#111A2E;--surface:#152036;--ink:#E8EEF9;--ink-2:#A6B1C6;--ink-3:#728099;
+    --line:#22304A;--accent:#6E9BFF;--accent-ink:#0B1120;--accent-soft:#16264A;--mark:#25427E;
+    --deep:#152036;--deep-ink:#E8EEF9;--deep-accent:#8FB4FF;
     --shadow:0 1px 0 rgba(0,0,0,.2),0 16px 40px -16px rgba(0,0,0,.6);color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0F1115;--bg-2:#161921;--surface:#1A1E27;--ink:#F1F0EC;--ink-2:#B5B8C0;--ink-3:#7D828D;
-  --line:#2A2F3A;--accent:#7C8CFF;--accent-ink:#0F1115;--accent-soft:#232A55;--mark:#B8DB3A;
+  --bg:#0B1120;--bg-2:#111A2E;--surface:#152036;--ink:#E8EEF9;--ink-2:#A6B1C6;--ink-3:#728099;
+  --line:#22304A;--accent:#6E9BFF;--accent-ink:#0B1120;--accent-soft:#16264A;--mark:#25427E;
+  --deep:#152036;--deep-ink:#E8EEF9;--deep-accent:#8FB4FF;
   --shadow:0 1px 0 rgba(0,0,0,.2),0 16px 40px -16px rgba(0,0,0,.6);color-scheme:dark;
 }
 
@@ -101,7 +106,7 @@ section{padding:112px 0}
 @media (max-width:760px){section{padding:80px 0}.sec-head{grid-template-columns:1fr;margin-bottom:36px}}
 
 /* ---------- hero ---------- */
-.hero{padding:72px 0 96px;position:relative}
+.hero{padding:72px 0 96px;position:relative;background:linear-gradient(180deg,var(--accent-soft) 0%,var(--bg) 85%)}
 .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 60% at 70% 40%,#000 10%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 70% 40%,#000 10%,transparent 70%);opacity:.55;pointer-events:none}
 .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative}
 .status{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:13px;color:var(--ink-2);margin-bottom:28px}
@@ -131,8 +136,8 @@ section{padding:112px 0}
 .conn::after{content:"";position:absolute;left:-5px;top:0;width:8px;height:8px;border-radius:50%;background:var(--accent);animation:flow 2.4s linear infinite}
 @keyframes flow{from{top:-4px;opacity:0}20%{opacity:1}80%{opacity:1}to{top:26px;opacity:0}}
 .node.active{border-color:var(--accent);background:var(--accent-soft)}
-.pipe-out{margin-top:18px;padding:14px 16px;border-radius:14px;background:var(--ink);color:var(--bg);font-family:var(--font-mono);font-size:12.5px;line-height:1.7}
-.pipe-out .ok{color:var(--mark)}
+.pipe-out{margin-top:18px;padding:14px 16px;border-radius:14px;background:var(--deep);color:var(--deep-ink);font-family:var(--font-mono);font-size:12.5px;line-height:1.7}
+.pipe-out .ok{color:var(--deep-accent)}
 .pipe-out .typing::after{content:"▍";animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 @media (max-width:960px){.hero .wrap{grid-template-columns:1fr}.hero{padding-top:40px}}
@@ -157,18 +162,18 @@ section{padding:112px 0}
 @media (max-width:480px){.problems{grid-template-columns:1fr}.prob:last-child{grid-column:auto}}
 
 /* ---------- works ---------- */
-#works{background:var(--surface);border-block:1px solid var(--line)}
+#works{background:var(--bg-2);border-block:1px solid var(--line)}
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px}
 .filter{border:1px solid var(--line);background:transparent;color:var(--ink-2);font:500 14px var(--font-body);padding:8px 16px;border-radius:999px;cursor:pointer;transition:.2s}
 .filter:hover{border-color:var(--ink);color:var(--ink)}
 .filter[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .filter .n{font-family:var(--font-mono);font-size:11px;opacity:.6;margin-left:6px}
 .works{display:flex;flex-direction:column;gap:28px}
-.work{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--bg);transition:transform .35s,box-shadow .35s}
+.work{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--surface);transition:transform .35s,box-shadow .35s}
 .work:hover{box-shadow:var(--shadow)}
 .work.hidden{display:none}
 .work:nth-child(even) .work-visual{order:2}
-.work-visual{background:var(--bg-2);padding:36px;display:grid;place-items:center;position:relative;min-height:380px;overflow:hidden}
+.work-visual{background:linear-gradient(135deg,var(--accent-soft),var(--surface));padding:36px;display:grid;place-items:center;position:relative;min-height:380px;overflow:hidden}
 .work-visual .num{position:absolute;top:20px;left:24px;font-family:var(--font-mono);font-size:12px;color:var(--ink-3)}
 .work-body{padding:40px 44px;display:flex;flex-direction:column}
 .work-cat{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
@@ -256,6 +261,15 @@ section{padding:112px 0}
 .sheet div{display:grid;grid-template-columns:1fr 1.4fr .8fr;border-top:1px solid #e3e3e3}
 .sheet div:first-child{border:0;background:#E8F5EC;font-weight:600}
 .sheet span{padding:3px 6px}
+.gs{border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:10.5px}
+.gs div{display:grid;grid-template-columns:1.1fr .9fr 1.1fr .7fr;border-top:1px solid var(--line)}
+.gs.gs3 div{grid-template-columns:1fr 1.8fr .7fr}
+.gs div:first-child{border-top:0}
+.gs span{padding:6px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:1px solid var(--line)}
+.gs span:first-child{border-left:0}
+.gs .gs-h{background:#E8F5EC;color:#1D6B3A;font-weight:700}
+.gs .ok{color:#1D7A3E;font-weight:700}.gs .ng{color:#C4321B;font-weight:700}.gs .run{color:var(--accent);font-weight:700}
+.note a{color:var(--accent)}
 .float{position:absolute;font-family:var(--font-mono);font-size:11px;padding:6px 10px;border-radius:8px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);color:var(--ink-2);white-space:nowrap}
 .float b{color:var(--accent)}
 @media (max-width:480px){.float{display:none}}
@@ -273,16 +287,16 @@ section{padding:112px 0}
 @media (max-width:560px){.caps{grid-template-columns:1fr}}
 
 /* ---------- strengths ---------- */
-#strengths{background:var(--ink);color:var(--bg)}
-#strengths .eyebrow{color:var(--mark)}
-#strengths .sec-lead{color:color-mix(in srgb,var(--bg) 70%,transparent)}
-.strengths{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid color-mix(in srgb,var(--bg) 20%,transparent)}
+#strengths{background:var(--deep);color:var(--deep-ink)}
+#strengths .eyebrow{color:var(--deep-accent)}
+#strengths .sec-lead{color:color-mix(in srgb,var(--deep-ink) 70%,transparent)}
+.strengths{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid color-mix(in srgb,var(--deep-ink) 18%,transparent)}
 .str{padding:36px 32px 8px 0}
-.str + .str{padding-left:32px;border-left:1px solid color-mix(in srgb,var(--bg) 20%,transparent)}
-.str .n{font-family:var(--font-mono);font-size:13px;color:var(--mark)}
+.str + .str{padding-left:32px;border-left:1px solid color-mix(in srgb,var(--deep-ink) 18%,transparent)}
+.str .n{font-family:var(--font-mono);font-size:13px;color:var(--deep-accent)}
 .str h3{font-size:22px;font-weight:900;margin:14px 0 12px}
-.str p{font-size:14.5px;color:color-mix(in srgb,var(--bg) 72%,transparent)}
-@media (max-width:860px){.strengths{grid-template-columns:1fr}.str,.str + .str{padding:28px 0;border-left:0;border-bottom:1px solid color-mix(in srgb,var(--bg) 20%,transparent)}}
+.str p{font-size:14.5px;color:color-mix(in srgb,var(--deep-ink) 72%,transparent)}
+@media (max-width:860px){.strengths{grid-template-columns:1fr}.str,.str + .str{padding:28px 0;border-left:0;border-bottom:1px solid color-mix(in srgb,var(--deep-ink) 18%,transparent)}}
 
 /* ---------- services ---------- */
 .services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -459,149 +473,151 @@ footer a:hover{color:var(--ink)}
   <div class="wrap">
     <div class="sec-head rv">
       <div><div class="eyebrow">Works</div><h2 class="sec-title">制作実績</h2></div>
-      <p class="sec-lead">「誰の」「どんな課題を」「どう解決するか」を軸に、企画から公開まで一人で手がけたツールです。すべてデモまたはソースコードを公開しています。</p>
+      <p class="sec-lead">Googleツール・LINE・AIをつなぎ、毎日の手作業を減らす仕組みを中心に掲載しています。「誰の」「どんな課題を」「どう解決するか」を軸に、企画から公開まで一人で手がけました。</p>
     </div>
 
     <div class="filters rv" role="group" aria-label="カテゴリで絞り込み">
       <button class="filter" aria-pressed="true" data-f="all">すべて<span class="n">6</span></button>
       <button class="filter" aria-pressed="false" data-f="ai">生成AI<span class="n">3</span></button>
-      <button class="filter" aria-pressed="false" data-f="google">Google連携<span class="n">4</span></button>
-      <button class="filter" aria-pressed="false" data-f="line">LINE<span class="n">1</span></button>
+      <button class="filter" aria-pressed="false" data-f="google">Google連携<span class="n">5</span></button>
+      <button class="filter" aria-pressed="false" data-f="line">LINE<span class="n">3</span></button>
+      <button class="filter" aria-pressed="false" data-f="gas">GAS<span class="n">2</span></button>
     </div>
 
     <div class="works" id="worksList">
 
       <!-- 01 -->
-      <article class="work rv" data-cat="google web">
+      <article class="work rv" data-cat="ai line web">
         <div class="work-visual">
           <span class="num">01 / 06</span>
-          <div class="mock">
-            <div class="mock-bar"><i></i><i></i><i></i><span class="url">hp-tataki-generator.vercel.app</span></div>
-            <div class="mock-in">
-              <div class="m-row" style="margin-bottom:8px"><div class="m-input">⌕ 渋谷区 × カフェ</div><div class="m-btn">一括登録</div></div>
-              <div class="todo"><span class="cb done"></span><span class="t">喫茶 ひだまり</span><span class="pri l">営業済</span><span class="due">HP有</span></div>
-              <div class="todo"><span class="cb done"></span><span class="t">ベーカリー こむぎ</span><span class="pri l">営業済</span><span class="due">—</span></div>
-              <div class="todo"><span class="cb"></span><span class="t">珈琲店 あおば</span><span class="pri m">重複?</span><span class="due">—</span></div>
-              <div class="todo"><span class="cb"></span><span class="t">cafe nook</span><span class="pri h">未営業</span><span class="due">—</span></div>
+          <div class="phone">
+            <div class="phone-top"><i>AI</i>Hair Salon LUMO</div>
+            <div class="phone-body">
+              <div class="lb me">駐車場はありますか？</div>
+              <div class="lb bot">店舗裏に2台分ございます🚗<br>満車の際は近隣のコインパーキングをご利用ください。</div>
+              <div class="lb me">カラーと縮毛矯正、同じ日にできますか？</div>
+              <div class="lb bot">確認のため、スタッフからご連絡いたします🙇</div>
             </div>
           </div>
-          <div class="float" style="right:22px;bottom:22px">⬇ <b>Excel</b> に出力</div>
+          <div class="float" style="right:22px;top:20px">FAQに根拠なし → <b>スタッフへ通知</b></div>
         </div>
         <div class="work-body">
-          <div class="work-cat"><span>Google連携</span><span>Webアプリ</span></div>
-          <h3>Googleマップ店舗情報収集・営業管理ツール</h3>
-          <p class="catch">提案先探しから営業状況の記録まで、ひとつの画面で。</p>
+          <div class="work-cat"><span>生成AI</span><span>LINE</span><span>Webアプリ</span></div>
+          <h3>LINE問い合わせAI Bot</h3>
+          <p class="catch">よくある質問はAIが即答、迷う質問は人へ。</p>
           <dl class="psr">
-            <div><dt>FOR</dt><dd>店舗向けにHP制作を提案する制作者・営業担当者</dd></div>
-            <div><dt>PROBLEM</dt><dd>店舗探し・情報の転記・営業済みの確認を別々に行う手間</dd></div>
-            <div><dt>SOLUTION</dt><dd>地域×業種やGoogleマップURLから店舗を検索し、重複チェック付きで一括登録。営業状況や制作したHPのURLを記録し、一覧をExcelに出力できる。</dd></div>
+            <div><dt>FOR</dt><dd>個人経営の美容室など、LINEで問い合わせを受ける店舗</dd></div>
+            <div><dt>PROBLEM</dt><dd>「営業時間は？」「駐車場は？」と繰り返し届く質問への対応と、答えられない質問のスタッフへの引き継ぎ</dd></div>
+            <div><dt>SOLUTION</dt><dd>オーナーが登録したFAQをもとにClaudeが自動回答。根拠がない・確信度が低い質問はAIの回答を送らずオーナーへ通知。FAQ編集・会話ログ・お知らせ配信はスマホの管理画面から。</dd></div>
           </dl>
-          <div class="stack"><span>Next.js</span><span>TypeScript</span><span>Google Places API</span><span>Supabase</span><span>OpenAI API</span></div>
+          <div class="stack"><span>Next.js</span><span>TypeScript</span><span>Claude API</span><span>LINE Messaging API</span><span>Supabase</span></div>
           <div class="links">
-            <a class="demo" href="https://hp-tataki-generator-s74r.vercel.app/" target="_blank" rel="noopener">デモを見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-            <a class="gh" href="https://github.com/moedaichi0629-ai/hp-tataki-generator" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+            <a class="demo" href="https://line-reservation-bot-two.vercel.app/" target="_blank" rel="noopener">紹介ページを見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+            <a class="gh" href="https://github.com/moedaichi0629-ai/line-reservation-bot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
           </div>
         </div>
       </article>
-
       <!-- 02 -->
-      <article class="work rv" data-cat="google web">
+      <article class="work rv" data-cat="google gas">
         <div class="work-visual">
           <span class="num">02 / 06</span>
+          <div class="mock">
+            <div class="mock-bar"><i></i><i></i><i></i><span class="url">予約回答 – Google スプレッドシート</span></div>
+            <div class="mock-in">
+              <div class="gs">
+                <div class="gs-h"><span>回答日時</span><span>お名前</span><span>希望日時</span><span>処理</span></div>
+                <div><span>10/03 09:12</span><span>佐藤 様</span><span>10/07 10:00</span><span class="ok">完了</span></div>
+                <div><span>10/03 14:40</span><span>鈴木 様</span><span>10/08 13:00</span><span class="ok">完了</span></div>
+                <div><span>10/04 08:05</span><span>高橋 様</span><span>10/09 15:00</span><span class="ng">エラー</span></div>
+                <div><span>10/05 11:30</span><span>田中 様</span><span>10/10 11:00</span><span class="run">処理中</span></div>
+              </div>
+              <div class="m-row" style="margin-top:12px;gap:6px;flex-wrap:wrap"><span class="m-chip">📅 Calendar登録</span><span class="m-chip">✉ 完了メール送信</span><span class="m-chip on">↻ 選択行を再実行</span></div>
+            </div>
+          </div>
+          <div class="float" style="left:22px;bottom:22px">予定の二重作成を <b>防止</b></div>
+        </div>
+        <div class="work-body">
+          <div class="work-cat"><span>Google連携</span><span>GAS</span></div>
+          <h3>Google予約受付の自動化</h3>
+          <p class="catch">フォームに予約が入ったら、あとはおまかせ。</p>
+          <dl class="psr">
+            <div><dt>FOR</dt><dd>Googleフォームでオンライン相談などの予約を受け付ける小規模事業者</dd></div>
+            <div><dt>PROBLEM</dt><dd>予約のたびに、カレンダーへの予定登録・確認メールの送信・処理状況の記録を手作業で行う手間</dd></div>
+            <div><dt>SOLUTION</dt><dd>フォーム回答をもとに、GASがカレンダーへの予定登録と予約完了メールの送信を自動実行。処理結果やエラーをシートに記録し、選択した行だけ再実行できる。</dd></div>
+          </dl>
+          <div class="stack"><span>Google Apps Script</span><span>Google Forms</span><span>Google Sheets</span><span>Google Calendar</span><span>Gmail</span></div>
+          <div class="links">
+            <span class="soon">Googleアカウント上で動作</span>
+            <a class="gh" href="https://github.com/moedaichi0629-ai/google-booking-automation" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+          </div>
+        </div>
+      </article>
+      <!-- 03 -->
+      <article class="work rv" data-cat="ai google gas">
+        <div class="work-visual">
+          <span class="num">03 / 06</span>
+          <div class="mock">
+            <div class="mock-bar"><i></i><i></i><i></i><span class="url">記事下書き – Google スプレッドシート</span></div>
+            <div class="mock-in">
+              <div class="gs gs3">
+                <div class="gs-h"><span>キーワード</span><span>生成タイトル</span><span>状態</span></div>
+                <div><span>勤怠管理 クラウド</span><span>勤怠管理をクラウド化する5つのメリット</span><span class="ok">生成済み</span></div>
+                <div><span>経費精算 効率化</span><span>経費精算の手間を減らす仕組みづくり</span><span class="ok">生成済み</span></div>
+                <div><span>SaaS 導入 手順</span><span>…</span><span class="run">生成中</span></div>
+              </div>
+              <div class="m-card" style="margin-top:10px"><small class="mono" style="color:var(--ink-3)">本文 2,840字 / メタディスクリプション 118字</small><div class="m-sk" style="width:95%"></div><div class="m-sk" style="width:80%"></div></div>
+            </div>
+          </div>
+          <div class="float" style="right:22px;bottom:22px">Claude API で <b>下書き生成</b></div>
+        </div>
+        <div class="work-body">
+          <div class="work-cat"><span>生成AI</span><span>Google連携</span><span>GAS</span></div>
+          <h3>GAS × AI ブログ記事下書き生成</h3>
+          <p class="catch">キーワードを入れるだけで、記事の下書きがシートに並ぶ。</p>
+          <dl class="psr">
+            <div><dt>FOR</dt><dd>オウンドメディアの記事制作担当者</dd></div>
+            <div><dt>PROBLEM</dt><dd>キーワードごとに記事の下書きを作り、制作状況を記録していく手間</dd></div>
+            <div><dt>SOLUTION</dt><dd>スプレッドシートのキーワードからClaude APIでタイトル・本文・メタディスクリプションを生成し、同じシートに書き出す。生成状況の管理と文字数チェック付きで、人が確認してから使う運用。</dd></div>
+          </dl>
+          <div class="stack"><span>Google Apps Script</span><span>Google Sheets</span><span>Claude API</span></div>
+          <div class="links">
+            <span class="soon">Googleアカウント上で動作</span>
+            <a class="gh" href="https://github.com/moedaichi0629-ai/gas-ai-blog-automation" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+          </div>
+        </div>
+      </article>
+      <!-- 04 -->
+      <article class="work rv" data-cat="google line web">
+        <div class="work-visual">
+          <span class="num">04 / 06</span>
           <div class="mock">
             <div class="mock-bar"><i></i><i></i><i></i><span class="url">todo-app.onrender.com</span></div>
             <div class="mock-in">
               <div class="m-row" style="margin-bottom:8px"><div class="m-input">⌕ タスクを検索</div><span class="m-chip on">期限順</span></div>
-              <div class="todo"><span class="cb done"></span><span class="t d">見積書を送付</span><span class="pri l">低</span><span class="due">10/03</span></div>
-              <div class="todo"><span class="cb"></span><span class="t">打ち合わせ資料の作成</span><span class="pri h">高</span><span class="due">10/06</span></div>
-              <div class="todo"><span class="cb"></span><span class="t">請求書の確認</span><span class="pri m">中</span><span class="due">10/08</span></div>
-              <div class="todo"><span class="cb"></span><span class="t">備品の発注</span><span class="pri l">低</span><span class="due">10/12</span></div>
+              <div class="todo"><span class="cb done"></span><span class="t d">見積書を送付</span><span class="due">10/03</span></div>
+              <div class="todo"><span class="cb"></span><span class="t">打ち合わせ資料の作成</span><span class="pri h">明日</span><span class="due">10/06</span></div>
+              <div class="todo"><span class="cb"></span><span class="t">請求書の確認</span><span class="pri m">3日後</span><span class="due">10/08</span></div>
+              <div class="todo"><span class="cb"></span><span class="t">備品の発注</span><span class="due">10/12</span></div>
             </div>
           </div>
-          <div class="float" style="left:22px;bottom:22px">↻ Sheetsに <b>自動保存</b></div>
+          <div class="float" style="left:22px;bottom:22px"><b>LINE</b>：期限が近いタスクが1件あります</div>
         </div>
         <div class="work-body">
-          <div class="work-cat"><span>Google連携</span><span>Webアプリ</span></div>
-          <h3>Todoアプリ</h3>
-          <p class="catch">期限と優先度が、ひと目で分かるタスク管理。</p>
+          <div class="work-cat"><span>Google連携</span><span>LINE</span><span>Webアプリ</span></div>
+          <h3>Todo管理 × 期限LINE通知</h3>
+          <p class="catch">期限が近づいたら、LINEで知らせてくれる。</p>
           <dl class="psr">
-            <div><dt>FOR</dt><dd>タスク管理をメモ帳やLINEで済ませている個人・小さなチーム</dd></div>
-            <div><dt>PROBLEM</dt><dd>「進捗が埋もれる」「期限が管理できていない」</dd></div>
-            <div><dt>SOLUTION</dt><dd>優先順位・期限・検索フィルターに対応したシンプルなアプリ。データはGoogleスプレッドシートに保存され、アプリを開かなくても確認できる。</dd></div>
+            <div><dt>FOR</dt><dd>タスクをスプレッドシートでも記録・確認したい個人・小さなチーム</dd></div>
+            <div><dt>PROBLEM</dt><dd>タスク管理と期限確認が別々になり、確認の手間が増える・期限を忘れる</dd></div>
+            <div><dt>SOLUTION</dt><dd>Web画面で登録したタスクをGoogleスプレッドシートに保存し、期日が近い未完了タスクをLINEで通知。キーワード・期限・完了状態で絞り込みもできる。</dd></div>
           </dl>
-          <div class="stack"><span>Python</span><span>Flask</span><span>Google Sheets API</span><span>LINE通知</span></div>
+          <div class="stack"><span>Python</span><span>Flask</span><span>Google Sheets API</span><span>LINE Messaging API</span><span>Render</span></div>
           <div class="links">
             <a class="demo" href="https://todo-app-1p8e.onrender.com/" target="_blank" rel="noopener">デモを見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
             <a class="gh" href="https://github.com/moedaichi0629-ai/todo-app" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
           </div>
         </div>
       </article>
-
-      <!-- 03 -->
-      <article class="work rv" data-cat="ai web">
-        <div class="work-visual">
-          <span class="num">03 / 06</span>
-          <div class="mock">
-            <div class="mock-bar"><i></i><i></i><i></i><span class="url">writing-correction-tool.streamlit.app</span></div>
-            <div class="mock-in">
-              <div style="margin-bottom:10px"><span class="m-chip">用途：お客様への返信</span><span class="m-chip on">丁寧</span><span class="m-chip">カジュアル</span></div>
-              <div class="panes">
-                <div class="pane"><small>BEFORE</small><span class="strike">明日行けなくなりました。また連絡します。</span></div>
-                <div class="pane after"><small>AFTER ✦</small>大変申し訳ございません。明日のご予約ですが、都合により伺うことが難しくなりました。改めて日程をご相談させてください。</div>
-              </div>
-              <div class="m-row" style="margin-top:10px;justify-content:flex-end"><span class="m-chip">別パターン</span><div class="m-btn">コピー</div></div>
-            </div>
-          </div>
-        </div>
-        <div class="work-body">
-          <div class="work-cat"><span>生成AI</span><span>Webアプリ</span></div>
-          <h3>文章添削AI</h3>
-          <p class="catch">用途とトーンを選ぶだけで、送れる文章に。</p>
-          <dl class="psr">
-            <div><dt>FOR</dt><dd>LINEやメールの文面に毎回悩む個人事業主・店舗スタッフ</dd></div>
-            <div><dt>PROBLEM</dt><dd>「失礼にならないか不安」「文章を考える時間がもったいない」</dd></div>
-            <div><dt>SOLUTION</dt><dd>AIが修正文・別パターン・コピペ用の完成文まで提案。スマホからその場で文章を整えられる。</dd></div>
-          </dl>
-          <div class="stack"><span>Python</span><span>Streamlit</span><span>OpenAI API</span></div>
-          <div class="links">
-            <a class="demo" href="https://writing-correction-tool-mygnto9hpkyehkzquhma9q.streamlit.app/" target="_blank" rel="noopener">デモを見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-            <a class="gh" href="https://github.com/moedaichi0629-ai/writing-correction-tool" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- 04 -->
-      <article class="work rv" data-cat="ai web">
-        <div class="work-visual">
-          <span class="num">04 / 06</span>
-          <div class="mock">
-            <div class="mock-bar"><i></i><i></i><i></i><span class="url">kabuki-chatbot.netlify.app</span></div>
-            <div class="mock-in chat">
-              <div class="bub me">「勧進帳」ってどんな話？</div>
-              <div class="bub ai"><b>歌舞伎予習AI</b>源義経一行が山伏に変装して関所を越えようとする物語です。見どころは弁慶が白紙の巻物を読み上げる「読み上げ」の場面…</div>
-              <div class="bub me">「見得」ってなに？</div>
-              <div class="bub ai"><b>歌舞伎予習AI</b>感情が高まった瞬間に、動きを止めてポーズを決める演技のことです。</div>
-            </div>
-          </div>
-          <div class="float" style="right:22px;top:20px">配役入力 → <b>予習ノート生成</b></div>
-        </div>
-        <div class="work-body">
-          <div class="work-cat"><span>生成AI</span><span>Webアプリ</span></div>
-          <h3>歌舞伎予習AI</h3>
-          <p class="catch">観劇前の「分からない」を、チャットで解消。</p>
-          <dl class="psr">
-            <div><dt>FOR</dt><dd>観劇の予定はあるものの、予習の時間が取れない方</dd></div>
-            <div><dt>PROBLEM</dt><dd>「あらすじや役者が分からないまま観に行くのは不安」</dd></div>
-            <div><dt>SOLUTION</dt><dd>演目・役者・用語をAIチャットで質問可能。配役情報を入力するだけで予習内容を自動生成。</dd></div>
-          </dl>
-          <div class="stack"><span>React</span><span>TypeScript</span><span>Dify</span></div>
-          <div class="links">
-            <a class="demo" href="https://heroic-blini-04272e.netlify.app/" target="_blank" rel="noopener">デモを見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-            <span class="soon">ソースコード非公開</span>
-          </div>
-        </div>
-      </article>
-
       <!-- 05 -->
       <article class="work rv" data-cat="google web">
         <div class="work-visual">
@@ -618,7 +634,7 @@ footer a:hover{color:var(--ink)}
               <div class="msg"><small>送信用テキスト（メール）</small><br>以下の日程でご都合はいかがでしょうか。<br>・10/6（火）10:00〜<br>・10/7（水）15:00〜</div>
             </div>
           </div>
-          <div class="float" style="left:22px;top:20px">✓ ダブルブッキング <b>0</b></div>
+          <div class="float" style="left:22px;top:20px">✓ 空き時間を <b>自動抽出</b></div>
         </div>
         <div class="work-body">
           <div class="work-cat"><span>Google連携</span><span>Webアプリ</span></div>
@@ -627,7 +643,7 @@ footer a:hover{color:var(--ink)}
           <dl class="psr">
             <div><dt>FOR</dt><dd>商談・面談の日程調整に時間を取られている個人事業主・営業担当</dd></div>
             <div><dt>PROBLEM</dt><dd>「候補日を出すのに時間がかかる」「ダブルブッキングが心配」</dd></div>
-            <div><dt>SOLUTION</dt><dd>Googleカレンダーと連携して空き時間を自動抽出し、LINE・メール用の送信文章まで自動生成。</dd></div>
+            <div><dt>SOLUTION</dt><dd>Googleカレンダーと連携して空き時間を自動抽出し、候補日とLINE・メール向けの案内文まで自動生成。</dd></div>
           </dl>
           <div class="stack"><span>Python</span><span>Streamlit</span><span>Google Calendar API</span><span>OAuth 2.0</span></div>
           <div class="links">
@@ -636,9 +652,8 @@ footer a:hover{color:var(--ink)}
           </div>
         </div>
       </article>
-
       <!-- 06 -->
-      <article class="work rv" data-cat="ai google line web">
+      <article class="work rv" data-cat="ai google line">
         <div class="work-visual">
           <span class="num">06 / 06</span>
           <div class="phone">
@@ -658,23 +673,23 @@ footer a:hover{color:var(--ink)}
         </div>
         <div class="work-body">
           <div class="work-cat"><span>生成AI</span><span>LINE</span><span>Google連携</span></div>
-          <h3>LINE自動化ツール</h3>
+          <h3>LINE × AI 記録自動化</h3>
           <p class="catch">写真を送るだけで、記録もレポートも自動に。</p>
           <dl class="psr">
             <div><dt>FOR</dt><dd>日々のちょっとした記録をLINEで済ませたい方・店舗</dd></div>
             <div><dt>PROBLEM</dt><dd>「記録が続かない」「スプレッドシートを開くのが面倒」</dd></div>
-            <div><dt>SOLUTION</dt><dd>LINEに写真を送るとAIが内容を解析し、スプレッドシートへ自動記録。日次・週次のレポートも自動生成。</dd></div>
+            <div><dt>SOLUTION</dt><dd>LINEに写真を送るとAIが内容を解析し、Googleスプレッドシートへ自動記録。日次・週次のレポートも自動生成。</dd></div>
           </dl>
-          <div class="stack"><span>Python</span><span>Flask</span><span>LINE API</span><span>OpenAI Vision</span><span>Google Sheets API</span></div>
+          <div class="stack"><span>Python</span><span>Flask</span><span>LINE Messaging API</span><span>OpenAI Vision</span><span>Google Sheets API</span></div>
           <div class="links">
-            <span class="soon">デモ準備中</span>
+            <span class="soon">LINE上で動作</span>
             <a class="gh" href="https://github.com/moedaichi0629-ai/meal_management_tool" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
           </div>
         </div>
       </article>
 
     </div>
-    <p class="note">※ 掲載作品は個人開発・模擬案件の制作例です。</p>
+    <p class="note">※ 掲載作品は個人開発・模擬案件の制作例です。その他の作品（文章添削AI・歌舞伎予習AI・店舗情報管理ツールなど）は <a href="https://github.com/moedaichi0629-ai" target="_blank" rel="noopener">GitHub</a> で公開しています。</p>
   </div>
 </section>
 
